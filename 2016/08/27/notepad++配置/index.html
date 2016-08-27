@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://harveyhuang.github.io/./images/1472308223928.jpg">
 <meta property="og:image" content="http://harveyhuang.github.io/./images/1472308752134.jpg">
 <meta property="og:image" content="http://harveyhuang.github.io/./images/1472309585979.jpg">
-<meta property="og:updated_time" content="2016-08-27T15:03:41.351Z">
+<meta property="og:updated_time" content="2016-08-27T15:46:18.345Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="notepad++配置">
 <meta name="twitter:description" content="引言相信大家一般都苦于使用什么样的IDE编辑一些比较小的程序，VS太过于庞大，不适合新手理解CC程序怎么从源码到可执行程序的过程，并且VS编译出来的项目只有对方安装了VS才能使用。今天记录一下如何在notepad++上编辑执行CC Python Java代码。
@@ -155,13 +155,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
-                        <li>友情链接</li>
+                        <li>Friends</li>
                         
                         
-                        <li>关于我</li>
+                        <li>About Me</li>
                         
                     </ul>
                 </div>
@@ -277,7 +277,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap"><article id="post-notepad++配置" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -321,28 +321,19 @@
           
         <h4 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h4><p>相信大家一般都苦于使用什么样的IDE编辑一些比较小的程序，VS太过于庞大，不适合新手理解<code>CC</code>程序怎么从源码到可执行程序的过程，并且VS编译出来的项目只有对方安装了VS才能使用。今天记录一下如何在<strong>notepad++</strong>上编辑执行<code>CC</code> <code>Python</code> <code>Java</code>代码。</p>
 <h3 id="1-前期工作"><a href="#1-前期工作" class="headerlink" title="1. 前期工作"></a>1. 前期工作</h3><ol>
-<li><p>安装好Python环境，在安装时勾选<strong>Add python.exe to Path</strong><br> 这样做的好处是，不需要另外为python添加环境变量</p>
-<p><img src="./images/1472308223928.jpg" alt="python添加环境变量" title="1472308223928.jpg"></p>
-</li>
-<li><p>安装好<strong>MinGW</strong>，即windows环境下的<code>GCC</code>。这个可以从<strong>Code-Block</strong>或者<strong>Dev-Cpp</strong>中抽取，毕竟从官网中下载太过麻烦。</p>
-</li>
+<li>安装好Python环境，在安装时勾选<strong>Add python.exe to Path</strong><br> 这样做的好处是，不需要另外为python添加环境变量<br><img src="./images/1472308223928.jpg" alt="python添加环境变量" title="1472308223928.jpg"></li>
+<li>安装好<strong>MinGW</strong>，即windows环境下的<code>GCC</code>。这个可以从<strong>Code-Block</strong>或者<strong>Dev-Cpp</strong>中抽取，毕竟从官网中下载太过麻烦。</li>
 <li>安装好<code>JDK</code>和<code>JRE</code>（如果你想使用notepad++编辑<code>java</code>程序），并为之配置环境变量</li>
-<li><p>在notepad++中安装<strong>NppExec</strong>插件，在插件管理器中能够找到。</p>
-<p><img src="./images/1472308752134.jpg" alt="安装NppExec" title="1472308752134.jpg"></p>
-</li>
+<li>在notepad++中安装<strong>NppExec</strong>插件，在插件管理器中能够找到。<br><img src="./images/1472308752134.jpg" alt="安装NppExec" title="1472308752134.jpg"></li>
 </ol>
 <h3 id="2-添加执行脚本"><a href="#2-添加执行脚本" class="headerlink" title="2. 添加执行脚本"></a>2. 添加执行脚本</h3><ul>
-<li><p>安装完<strong>NppExec</strong> 之后，点击==F6==键便可键入脚本，输入下面的脚本之后保存。</p>
-<p><img src="./images/1472309585979.jpg" alt="书写NPP脚本" title="1472309585979.jpg"></p>
-</li>
+<li>安装完<strong>NppExec</strong> 之后，点击==F6==键便可键入脚本，输入下面的脚本之后保存。<br><img src="./images/1472309585979.jpg" alt="书写NPP脚本" title="1472309585979.jpg"></li>
 </ul>
 <ol>
 <li><p><code>CC</code>执行脚本</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">npp_save</div><div class="line">cd $(CURRENT_DIRECTORY)</div><div class="line">echo ======start to compile========</div><div class="line">g++ -g -Wall  -std=c++11 &quot;$(FILE_NAME)&quot; -o &quot;$(NAME_PART)&quot;</div><div class="line">echo ======start to execute=======</div><div class="line">&quot;$(NAME_PART)&quot;</div></pre></td></tr></table></figure>
 <p> 名字保存为<code>g++</code>，当然如果平时编辑<code>gcc</code>比较多的话，按照上面的例子修改即可。<code>g++</code>的编译选项实现了<strong>测试</strong>，<strong>显示所有警告</strong>，<strong>使用C++11标准</strong>，这里可以按需修改。</p>
 </li>
-</ol>
-<ol>
 <li><p><code>Python</code>执行脚本</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> npp_save</div><div class="line">cd $(CURRENT_DIRECTORY)</div><div class="line">echo ======start to execute=======</div><div class="line">python &quot;$(FILE_NAME)&quot;</div></pre></td></tr></table></figure>
 <p> 名字保存为<code>python</code>。</p>
@@ -363,17 +354,17 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/08/27/notepad++配置/">notepad++配置</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">Harvey Huang</a></p>
-        <p><span>发布时间:</span>2016-08-27, 00:00:00</p>
-        <p><span>最后更新:</span>2016-08-27, 23:03:41</p>
+        <p><span>Title:</span><a href="/2016/08/27/notepad++配置/">notepad++配置</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Harvey Huang</a></p>
+        <p><span>Created:</span>2016-08-27, 00:00:00</p>
+        <p><span>Updated:</span>2016-08-27, 23:46:18</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/08/27/notepad++配置/" title="notepad++配置">http://harveyhuang.github.io/2016/08/27/notepad++配置/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://harveyhuang.github.io/2016/08/27/notepad++配置/　　作者: Harvey Huang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2016/08/27/notepad++配置/" title="notepad++配置">http://harveyhuang.github.io/2016/08/27/notepad++配置/</a>
+            <span class="copy-path" data-clipboard-text="From http://harveyhuang.github.io/2016/08/27/notepad++配置/　　By Harvey Huang" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
         </p>
     </div>
 
@@ -383,7 +374,7 @@
 </article>
 
     <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Contents</strong>
         
             <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-前期工作"><span class="toc-number"></span> <span class="toc-text">1. 前期工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-添加执行脚本"><span class="toc-number"></span> <span class="toc-text">2. 添加执行脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-为执行脚本添加快捷键"><span class="toc-number"></span> <span class="toc-text">3.为执行脚本添加快捷键</span></a>
         
@@ -399,10 +390,10 @@
         }
     </style>
 
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
 
     <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"true"];
+        yiliaConfig.toc = ["Hide", "Show", !!"true"];
     </script>
 
 
@@ -460,13 +451,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
         
 
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
         
     </div>
 
@@ -487,14 +478,14 @@
                 2016 Harvey Huang
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -503,7 +494,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -557,9 +548,9 @@ MathJax.Hub.Queue(function() {
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window
