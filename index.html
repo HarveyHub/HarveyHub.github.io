@@ -182,7 +182,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test,</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/notepad-CC-Python/">notepad++, CC, Python</a></li></ul>
                     </div>
                 </section>
                 
@@ -259,11 +259,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-My-New-Post" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-notepad++配置" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/27/My-New-Post/" class="article-date">
-      <time datetime="2016-08-27T13:24:21.000Z" itemprop="datePublished">2016-08-27</time>
+      <a href="/2016/08/27/notepad++配置/" class="article-date">
+      <time datetime="2016-08-26T16:00:00.000Z" itemprop="datePublished">2016-08-27</time>
 </a>
 
 
@@ -278,7 +278,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/27/My-New-Post/">My New Post</a>
+      <a class="article-title" href="/2016/08/27/notepad++配置/">notepad++配置</a>
     </h1>
   
 
@@ -288,8 +288,42 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="welcome-to-my-first-blog"><a href="#welcome-to-my-first-blog" class="headerlink" title="welcome to my first blog"></a>welcome to my first blog</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">printf(&quot;hello world \n&quot;);</div></pre></td></tr></table></figure>
-
+        <h4 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h4><p>相信大家一般都苦于使用什么样的IDE编辑一些比较小的程序，VS太过于庞大，不适合新手理解<code>CC</code>程序怎么从源码到可执行程序的过程，并且VS编译出来的项目只有对方安装了VS才能使用。今天记录一下如何在<strong>notepad++</strong>上编辑执行<code>CC</code> <code>Python</code> <code>Java</code>代码。</p>
+<h3 id="1-前期工作"><a href="#1-前期工作" class="headerlink" title="1. 前期工作"></a>1. 前期工作</h3><ol>
+<li><p>安装好Python环境，在安装时勾选<strong>Add python.exe to Path</strong><br> 这样做的好处是，不需要另外为python添加环境变量</p>
+<p><img src="./images/1472308223928.jpg" alt="python添加环境变量" title="1472308223928.jpg"></p>
+</li>
+<li><p>安装好<strong>MinGW</strong>，即windows环境下的<code>GCC</code>。这个可以从<strong>Code-Block</strong>或者<strong>Dev-Cpp</strong>中抽取，毕竟从官网中下载太过麻烦。</p>
+</li>
+<li>安装好<code>JDK</code>和<code>JRE</code>（如果你想使用notepad++编辑<code>java</code>程序），并为之配置环境变量</li>
+<li><p>在notepad++中安装<strong>NppExec</strong>插件，在插件管理器中能够找到。</p>
+<p><img src="./images/1472308752134.jpg" alt="安装NppExec" title="1472308752134.jpg"></p>
+</li>
+</ol>
+<h3 id="2-添加执行脚本"><a href="#2-添加执行脚本" class="headerlink" title="2. 添加执行脚本"></a>2. 添加执行脚本</h3><ul>
+<li><p>安装完<strong>NppExec</strong> 之后，点击==F6==键便可键入脚本，输入下面的脚本之后保存。</p>
+<p><img src="./images/1472309585979.jpg" alt="书写NPP脚本" title="1472309585979.jpg"></p>
+</li>
+</ul>
+<ol>
+<li><p><code>CC</code>执行脚本</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">npp_save</div><div class="line">cd $(CURRENT_DIRECTORY)</div><div class="line">echo ======start to compile========</div><div class="line">g++ -g -Wall  -std=c++11 &quot;$(FILE_NAME)&quot; -o &quot;$(NAME_PART)&quot;</div><div class="line">echo ======start to execute=======</div><div class="line">&quot;$(NAME_PART)&quot;</div></pre></td></tr></table></figure>
+<p> 名字保存为<code>g++</code>，当然如果平时编辑<code>gcc</code>比较多的话，按照上面的例子修改即可。<code>g++</code>的编译选项实现了<strong>测试</strong>，<strong>显示所有警告</strong>，<strong>使用C++11标准</strong>，这里可以按需修改。</p>
+</li>
+</ol>
+<ol>
+<li><p><code>Python</code>执行脚本</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> npp_save</div><div class="line">cd $(CURRENT_DIRECTORY)</div><div class="line">echo ======start to execute=======</div><div class="line">python &quot;$(FILE_NAME)&quot;</div></pre></td></tr></table></figure>
+<p> 名字保存为<code>python</code>。</p>
+</li>
+</ol>
+<ol>
+<li><p><code>JAVA</code>执行脚本</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">npp_save</div><div class="line">cd $(CURRENT_DIRECTORY)</div><div class="line">echo ======start to compile========</div><div class="line">javac &quot;$(FILE_NAME)&quot;</div><div class="line">echo ======start to execute=======</div><div class="line">java &quot;$(NAME_PART)&quot;</div></pre></td></tr></table></figure>
+<p> 名字保存为<code>java</code></p>
+</li>
+</ol>
+<h3 id="3-为执行脚本添加快捷键"><a href="#3-为执行脚本添加快捷键" class="headerlink" title="3.为执行脚本添加快捷键"></a>3.为执行脚本添加快捷键</h3>
       
     </div>
     
@@ -299,73 +333,9 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test,</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/notepad-CC-Python/">notepad++, CC, Python</a></li></ul>
     </div>
 
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/27/hello-world/" class="article-date">
-      <time datetime="2016-08-27T13:02:48.154Z" itemprop="datePublished">2016-08-27</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/27/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
       
       <div class="clearfix"></div>
     </div>
