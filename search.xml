@@ -10,19 +10,17 @@
 <p>看见网上的大神们在<code>github</code>上搭建自己的博客，便也手痒了，也想搭一个，本文记载了搭建博客的整个过程</p>
 </blockquote>
 <p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
-<ol>
-<li>申请git账号</li>
-<li>新建一个和自己用户名一样的<strong>repository</strong></li>
-<li>本地安装git</li>
-<li>添加SSHkey</li>
-<li>下载安装nodejs</li>
-<li>下载安装Hexo</li>
-<li>开始搭建一个<code>hello world</code>博客</li>
-<li>写一篇自己的文章</li>
-<li>应用主题</li>
-<li>博客维护</li>
-</ol>
-]]></content>
+<h3 id="申请git账号"><a href="#申请git账号" class="headerlink" title="申请git账号"></a>申请git账号</h3><h3 id="新建一个和自己用户名一样的repository"><a href="#新建一个和自己用户名一样的repository" class="headerlink" title="新建一个和自己用户名一样的repository"></a>新建一个和自己用户名一样的<strong>repository</strong></h3><h3 id="本地安装git"><a href="#本地安装git" class="headerlink" title="本地安装git"></a>本地安装git</h3><h3 id="添加SSHkey"><a href="#添加SSHkey" class="headerlink" title="添加SSHkey"></a>添加SSHkey</h3><h3 id="下载安装nodejs"><a href="#下载安装nodejs" class="headerlink" title="下载安装nodejs"></a>下载安装nodejs</h3><h3 id="下载安装Hexo"><a href="#下载安装Hexo" class="headerlink" title="下载安装Hexo"></a>下载安装Hexo</h3><h3 id="开始搭建一个hello-world博客"><a href="#开始搭建一个hello-world博客" class="headerlink" title="开始搭建一个hello world博客"></a>开始搭建一个<code>hello world</code>博客</h3><h3 id="写一篇自己的文章"><a href="#写一篇自己的文章" class="headerlink" title="写一篇自己的文章"></a>写一篇自己的文章</h3><h3 id="应用主题"><a href="#应用主题" class="headerlink" title="应用主题"></a>应用主题</h3><h3 id="博客维护"><a href="#博客维护" class="headerlink" title="博客维护"></a>博客维护</h3>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[OpenCL + Intel + VS2013环境搭建]]></title>
+      <url>http://harveyhuang.github.io/2016/08/28/OpenCL%20+%20Intel%20+%20VS2013%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>使用Intel实现的OpenCL做异构并行计算</p>
+</blockquote>
+<p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
+<h3 id="安装VS2013"><a href="#安装VS2013" class="headerlink" title="安装VS2013"></a>安装VS2013</h3><h3 id="安装Intel-OpenCL-SDK"><a href="#安装Intel-OpenCL-SDK" class="headerlink" title="安装Intel OpenCL SDK"></a>安装Intel OpenCL SDK</h3><h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><h3 id="实用代码框架"><a href="#实用代码框架" class="headerlink" title="实用代码框架"></a>实用代码框架</h3>]]></content>
     </entry>
     
     <entry>
@@ -33,13 +31,13 @@
 <p>相信大家一般都苦于使用什么样的IDE编辑一些比较小的程序，VS太过于庞大，不适合新手理解<code>CC</code>程序怎么从源码到可执行程序的过程，并且VS编译出来的项目只有对方安装了VS才能使用。今天记录一下如何在<strong>notepad++</strong>上编辑执行<code>CC</code> <code>Python</code> <code>Java</code>代码。</p>
 </blockquote>
 <p><excerpt in="" index=""><br><a id="more"></a>     </excerpt></p>
-<h3 id="1-前期工作"><a href="#1-前期工作" class="headerlink" title="1. 前期工作"></a>1. 前期工作</h3><ol>
+<h3 id="前期工作"><a href="#前期工作" class="headerlink" title="前期工作"></a>前期工作</h3><ol>
 <li>安装好Python环境，在安装时勾选<strong>Add python.exe to Path</strong><br> 这样做的好处是，不需要另外为python添加环境变量<br><img src="./images/1472308223928.jpg" alt="python添加环境变量" title="1472308223928.jpg"></li>
 <li>安装好<strong>MinGW</strong>，即windows环境下的<code>GCC</code>。这个可以从<strong>Code-Block</strong>或者<strong>Dev-Cpp</strong>中抽取，毕竟从官网中下载太过麻烦。</li>
 <li>安装好<code>JDK</code>和<code>JRE</code>（如果你想使用notepad++编辑<code>java</code>程序），并为之配置环境变量</li>
 <li>在notepad++中安装<strong>NppExec</strong>插件，在插件管理器中能够找到。<br><img src="./images/1472308752134.jpg" alt="安装NppExec" title="1472308752134.jpg"></li>
 </ol>
-<h3 id="2-添加执行脚本"><a href="#2-添加执行脚本" class="headerlink" title="2. 添加执行脚本"></a>2. 添加执行脚本</h3><ul>
+<h3 id="添加执行脚本"><a href="#添加执行脚本" class="headerlink" title="添加执行脚本"></a>添加执行脚本</h3><ul>
 <li>安装完<strong>NppExec</strong> 之后，点击==F6==键便可键入脚本，输入下面的脚本之后保存。<br><img src="./images/1472309585979.jpg" alt="书写NPP脚本" title="1472309585979.jpg"></li>
 </ul>
 <ol>
@@ -56,7 +54,7 @@
 <p>名字保存为<code>java</code></p>
 </li>
 </ol>
-<h3 id="3-为执行脚本添加快捷键"><a href="#3-为执行脚本添加快捷键" class="headerlink" title="3.为执行脚本添加快捷键"></a>3.为执行脚本添加快捷键</h3><pre><code>添加快捷键的方法自行百度。
+<h3 id="为执行脚本添加快捷键"><a href="#为执行脚本添加快捷键" class="headerlink" title="为执行脚本添加快捷键"></a>为执行脚本添加快捷键</h3><pre><code>添加快捷键的方法自行百度。
 </code></pre>]]></content>
     </entry>
     
