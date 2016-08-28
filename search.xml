@@ -24,6 +24,43 @@
     </entry>
     
     <entry>
+      <title><![CDATA[git学习笔记]]></title>
+      <url>http://harveyhuang.github.io/2016/08/28/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>学习<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰git教程</a>的笔记</p>
+</blockquote>
+<p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
+<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><ol>
+<li>可以从<a href="https://git-scm.com/download" target="_blank" rel="external">git官方下载网站</a>下载对应的git版本，安装过程中一路<strong>next</strong>即可；linux下直接使用命令<code>sudo apt-get install git</code>安装</li>
+<li><p>需要配置local信息</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;Your Name&quot;</div><div class="line">$ git config --global user.email &quot;email@example.com&quot;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="常用命令及其功能"><a href="#常用命令及其功能" class="headerlink" title="常用命令及其功能"></a>常用命令及其功能</h3><ol>
+<li><code>git init</code>，讲当前目录变成<strong>Git</strong>可以管理的仓库</li>
+<li><code>git add &quot;existed file/folder</code>，将该文件提交到<strong>stage</strong>，当后面是文件夹时，提交该文件夹下所有内容</li>
+<li><code>git commit -m &quot;describe of commition&quot;</code>，将<code>git add</code>提交到<strong>stage</strong>的内容提交到仓库中。</li>
+<li><code>git status</code>查看仓库当前状态。</li>
+<li><code>git diff &quot;file name&quot;</code>，比较仓库中==filename==文件和工作区中该文件的区别</li>
+<li><code>git log</code>或<code>git log --pretty=online</code>，显示从最近到最远的提交日志</li>
+<li><code>git reset --hard HEAD^</code>，将工作区中的内容回溯到上一次提交之前。<code>HEAD</code>表示当前版本，上一个版本时<code>HEAD^</code>，上上个版本是<code>HEAD^^</code>，往前N个版本就是<code>HEAD~N</code>。<code>git reset --hard</code>之后也可以接版本ID（很长的一串数字）。</li>
+<li><code>git reflog</code>用来记录每一次命令，上面有之前提交的版本号，这样方便回溯或切换到之后版本。</li>
+<li><code>git checkout -- file</code>，检出==file==在库中的版本，这会覆盖掉工作区中的==file==，从而实现的功能是<strong>撤销工作区文件的删改</strong>，<code>git reset HEAD file</code>把<strong>stage中的==file==撤销掉</strong></li>
+<li><code>git rm &quot;file&quot;</code>删除仓库中==file==文件。使用完该命令之后就不能从仓库中<code>git chechout &quot;file&quot;</code>检出该文件了。如果只是本地删除，可以检出恢复。</li>
+<li><code>ssh-keygen -t res -C &quot;your email@example.com&quot;</code>，创建SSH Key，一路回车下去，就会发现在用户目录下有<code>.ssh</code>目录，目录中会有<code>id_rsa</code>和<code>id_rsa.pub</code>，这两个是<strong>SSH Key</strong>密钥对，<code>id_rsa</code>是私钥，不能泄露，<code>id_rsa.pub</code>是公钥，可以放心的告诉别人。<br>登陆GitHub，打开”Account setting”，”SSH Keys”界面，点”Add SSH Key”，填上title，在Key文本框里粘贴<code>id_rsa.pub</code>中的内容。点”Add Key”，就可以看到已经添加的Key</li>
+</ol>
+<h4 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h4><ol>
+<li><p>关联远程仓库和本地仓库，在GitHub创建好空的==repository==之后，根据提示关联已经有的本地仓库，在本地仓库目录下执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote add origin https://github.com/your_name/repository_name.git</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
+<p>提交本地仓库所有内容，<code>-u</code>表示将本地master分支与远程的origin分支关联起来，在以后的推送和拉取时可以简化命令为<code>git push origin master</code>将本地库的内容推送到远程。<br><code>git clone https://github.com/your_name/repository_name.git</code>将远程库中内容拷贝到本地<br><code>git remote -v</code>查看远程库信息</p>
+</li>
+</ol>
+<p>13.<code>git checkout -b dev</code>创建==dev==分支，并且切换到该分支。相当于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git branch //查看已有分支，当前分支会有*标志</div><div class="line">git branch dev //创建分支</div><div class="line">git checkout dev //切换该分支</div><div class="line">git checkout -b &lt;name&gt; //创建+切换分支</div><div class="line">git merge &lt;name&gt; //将某分支合并到当前分支上</div><div class="line">git branch -d &lt;name&gt; //删除某分支</div></pre></td></tr></table></figure>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[notepad++配置]]></title>
       <url>http://harveyhuang.github.io/2016/08/27/notepad++%E9%85%8D%E7%BD%AE/</url>
       <content type="html"><![CDATA[<p><strong>引言</strong></p>
