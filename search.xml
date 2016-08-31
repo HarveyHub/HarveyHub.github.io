@@ -10,17 +10,45 @@
 <p>看见网上的大神们在<code>github</code>上搭建自己的博客，便也手痒了，也想搭一个，本文记载了搭建博客的整个过程</p>
 </blockquote>
 <p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
-<h3 id="申请git账号"><a href="#申请git账号" class="headerlink" title="申请git账号"></a>申请git账号</h3><h3 id="新建一个和自己用户名一样的repository"><a href="#新建一个和自己用户名一样的repository" class="headerlink" title="新建一个和自己用户名一样的repository"></a>新建一个和自己用户名一样的<strong>repository</strong></h3><h3 id="本地安装git"><a href="#本地安装git" class="headerlink" title="本地安装git"></a>本地安装git</h3><h3 id="添加SSHkey"><a href="#添加SSHkey" class="headerlink" title="添加SSHkey"></a>添加SSHkey</h3><h3 id="下载安装nodejs"><a href="#下载安装nodejs" class="headerlink" title="下载安装nodejs"></a>下载安装nodejs</h3><h3 id="下载安装Hexo"><a href="#下载安装Hexo" class="headerlink" title="下载安装Hexo"></a>下载安装Hexo</h3><h3 id="开始搭建一个hello-world博客"><a href="#开始搭建一个hello-world博客" class="headerlink" title="开始搭建一个hello world博客"></a>开始搭建一个<code>hello world</code>博客</h3><h3 id="写一篇自己的文章"><a href="#写一篇自己的文章" class="headerlink" title="写一篇自己的文章"></a>写一篇自己的文章</h3><h3 id="应用主题"><a href="#应用主题" class="headerlink" title="应用主题"></a>应用主题</h3><h3 id="博客维护"><a href="#博客维护" class="headerlink" title="博客维护"></a>博客维护</h3>]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[OpenCL + Intel + VS2013环境搭建]]></title>
-      <url>http://harveyhuang.github.io/2016/08/28/OpenCL%20+%20Intel%20+%20VS2013%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>使用Intel实现的OpenCL做异构并行计算</p>
-</blockquote>
-<p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
-<h3 id="安装VS2013"><a href="#安装VS2013" class="headerlink" title="安装VS2013"></a>安装VS2013</h3><h3 id="安装Intel-OpenCL-SDK"><a href="#安装Intel-OpenCL-SDK" class="headerlink" title="安装Intel OpenCL SDK"></a>安装Intel OpenCL SDK</h3><h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><h3 id="实用代码框架"><a href="#实用代码框架" class="headerlink" title="实用代码框架"></a>实用代码框架</h3>]]></content>
+<h3 id="申请git账号"><a href="#申请git账号" class="headerlink" title="申请git账号"></a>申请git账号</h3><h3 id="新建一个和自己用户名一样的repository"><a href="#新建一个和自己用户名一样的repository" class="headerlink" title="新建一个和自己用户名一样的repository"></a>新建一个和自己用户名一样的<strong>repository</strong></h3><p>For example，我的github的用户名时HarveyHub，所以我建的repository名为 HarveyHub.github.io</p>
+<h3 id="本地安装git"><a href="#本地安装git" class="headerlink" title="本地安装git"></a>本地安装git</h3><h3 id="添加SSHkey"><a href="#添加SSHkey" class="headerlink" title="添加SSHkey"></a>添加SSHkey</h3><ul>
+<li>参考<a href="https://harveyhub.github.io/2016/08/28/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_blank" rel="external">git学习笔记</a>中环境配置，添加SSH key<h3 id="下载安装nodejs-nodejs中文官网"><a href="#下载安装nodejs-nodejs中文官网" class="headerlink" title="下载安装nodejs nodejs中文官网"></a>下载安装nodejs <a href="http://nodejs.cn/" target="_blank" rel="external">nodejs中文官网</a></h3></li>
+</ul>
+<h3 id="下载安装Hexo"><a href="#下载安装Hexo" class="headerlink" title="下载安装Hexo"></a>下载安装Hexo</h3><ul>
+<li>安装好nodejs之后，可以使用<code>npm install hexo-cli -g</code>名利安装Hexo<h3 id="开始搭建一个hello-world博客"><a href="#开始搭建一个hello-world博客" class="headerlink" title="开始搭建一个hello world博客"></a>开始搭建一个<code>hello world</code>博客</h3></li>
+</ul>
+<ol>
+<li>新建blog文件夹</li>
+<li><code>hexo init blog</code></li>
+<li><code>npm install</code></li>
+<li><code>hexo generate</code>也可以简写为<code>hexo g</code></li>
+<li><code>hexo server</code>启动本地服务器，进入<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 预览</li>
+<li><p>修改blog目录下的配置文件<code>_config.yml</code></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/HarveyHub/HarveyHub.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行命令<code>npm install hexo-deployer-git --save</code></p>
+</li>
+<li>这时使用<code>hexo deploy</code>命令发布网站之后，就会在 harveyhub.github.io访问到helloworld博客。<h3 id="写一篇自己的博文，并发布"><a href="#写一篇自己的博文，并发布" class="headerlink" title="写一篇自己的博文，并发布"></a>写一篇自己的博文，并发布</h3></li>
+<li>hexo new “postName” #新建文章，在<strong>source/_post/</strong>中生成<code>postName.md</code>文件</li>
+<li><code>hexo new &quot;pageName&quot;</code> #新建页面</li>
+<li><code>hexo generate</code> #生成静态页面到public目录</li>
+<li><code>hexo server</code> #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）</li>
+<li><code>hexo deploy</code> #发布博文，将github作为静态网站的服务器</li>
+<li><code>hexo help</code> #查看帮助</li>
+<li><code>hexo version</code> #查看hexo版本<h3 id="应用主题"><a href="#应用主题" class="headerlink" title="应用主题"></a>应用主题</h3><a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">Hexo All Themes</a>中有很多主题，<code>git clone</code>到本地blog/themes，把blog根目录中 <code>_config.yml</code> 中<code>theme:</code>对应的值改为主题名，之后一步步按照<strong>readme.md</strong>文件中安装主题<h3 id="博客维护"><a href="#博客维护" class="headerlink" title="博客维护"></a>博客维护</h3></li>
+<li><code>hexo new &quot;postName&quot;/&quot;</code> <code>hexo new page &quot;pageName&quot;</code></li>
+<li><code>hexo clean</code>删除public文件夹中已经生成的静态页面，让人不爽的是把图片也删除了。这样markdown文件里面的图片就不能在网页中显示了。</li>
+<li><code>hexo generate</code></li>
+<li>如果markdown文件中引用了图片，记得把图片放入到public中博文相应的目录，因为<code>git clean</code>之后图片会被删除。</li>
+<li><code>hexo deploy</code><h3 id="hexo文章模板"><a href="#hexo文章模板" class="headerlink" title="hexo文章模板"></a>hexo文章模板</h3></li>
+</ol>
+<ul>
+<li><p>模板可按个人需求修改</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">title:  博文名</div><div class="line">date: 时间日期</div><div class="line">categories:</div><div class="line">  - 文章分类名1</div><div class="line">  - 文章分类名2</div><div class="line">tags: </div><div class="line">  - 文章标签1</div><div class="line">  - 文章标签2</div><div class="line">top: 1 #文章置顶</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>文章分类、文章标签分类需要主题支持</strong></p>
+]]></content>
     </entry>
     
     <entry>
@@ -37,29 +65,46 @@
 </li>
 </ol>
 <h3 id="常用命令及其功能"><a href="#常用命令及其功能" class="headerlink" title="常用命令及其功能"></a>常用命令及其功能</h3><h4 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h4><ol>
-<li><code>git init</code>，讲当前目录变成<strong>Git</strong>可以管理的仓库</li>
+<li><code>git init</code>，将当前目录变成<strong>Git</strong>可以管理的仓库</li>
 <li><code>git add &quot;existed file/folder</code>，将该文件提交到<strong>stage</strong>，当后面是文件夹时，提交该文件夹下所有内容</li>
 <li><code>git commit -m &quot;describe of commition&quot;</code>，将<code>git add</code>提交到<strong>stage</strong>的内容提交到仓库中。</li>
 <li><code>git status</code>查看仓库当前状态。</li>
 <li><code>git diff &quot;file name&quot;</code>，比较仓库中==filename==文件和工作区中该文件的区别</li>
 <li><code>git log</code>或<code>git log --pretty=online</code>，显示从最近到最远的提交日志</li>
+<li><code>gitk</code>可进入图形界面</li>
 <li><code>git reset --hard HEAD^</code>，将工作区中的内容回溯到上一次提交之前。<code>HEAD</code>表示当前版本，上一个版本时<code>HEAD^</code>，上上个版本是<code>HEAD^^</code>，往前N个版本就是<code>HEAD~N</code>。<code>git reset --hard</code>之后也可以接版本ID（很长的一串数字）。</li>
 <li><code>git reflog</code>用来记录每一次命令，上面有之前提交的版本号，这样方便回溯或切换到之后版本。</li>
 <li><code>git checkout -- file</code>，检出==file==在库中的版本，这会覆盖掉工作区中的==file==，从而实现的功能是<strong>撤销工作区文件的删改</strong>，<code>git reset HEAD file</code>把<strong>stage中的==file==撤销掉</strong></li>
-<li><code>git rm &quot;file&quot;</code>删除仓库中==file==文件。使用完该命令之后就不能从仓库中<code>git chechout &quot;file&quot;</code>检出该文件了。如果只是本地删除，可以检出恢复。</li>
-<li><code>ssh-keygen -t res -C &quot;your email@example.com&quot;</code>，创建SSH Key，一路回车下去，就会发现在用户目录下有<code>.ssh</code>目录，目录中会有<code>id_rsa</code>和<code>id_rsa.pub</code>，这两个是<strong>SSH Key</strong>密钥对，<code>id_rsa</code>是私钥，不能泄露，<code>id_rsa.pub</code>是公钥，可以放心的告诉别人。<br>登陆GitHub，打开”Account setting”，”SSH Keys”界面，点”Add SSH Key”，填上title，在Key文本框里粘贴<code>id_rsa.pub</code>中的内容。点”Add Key”，就可以看到已经添加的Key</li>
+<li><p><code>git rm &quot;file&quot;</code>删除仓库中==file==文件。使用完该命令之后就不能从仓库中<code>git chechout &quot;file&quot;</code>检出该文件了。如果只是本地删除，可以检出恢复。</p>
+</li>
+<li><p><code>ssh-keygen -t res -C &quot;your email@example.com&quot;</code>，创建SSH Key，一路回车下去，就会发现在用户目录下有<code>.ssh</code>目录，目录中会有<code>id_rsa</code>和<code>id_rsa.pub</code>，这两个是<strong>SSH Key</strong>密钥对，<code>id_rsa</code>是私钥，不能泄露，<code>id_rsa.pub</code>是公钥，可以放心的告诉别人。<br>登陆GitHub，点击右边自己的头像打开<strong>Setting</strong>，左边的列表中会有<strong>SSH and GPG keys</strong>，点击之后在右边会看到<strong>New SSH Key</strong>，填上<strong>Title</strong>，在Key文本框里粘贴<code>id_rsa.pub</code>中的内容。点<strong>Add SSH Key</strong>，就可以看到已经添加的Key。</p>
+</li>
 </ol>
 <h4 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h4><ol>
 <li><p>关联远程仓库和本地仓库，在GitHub创建好空的==repository==之后，根据提示关联已经有的本地仓库，在本地仓库目录下执行</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote add origin https://github.com/your_name/repository_name.git</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
-<p> 提交本地仓库所有内容，<code>-u</code>表示将本地master分支与远程的origin分支关联起来，在以后的推送和拉取时可以简化命令为<code>git push origin master</code>将本地库的内容推送到远程。<br> <code>git clone https://github.com/your_name/repository_name.git</code>将远程库中内容拷贝到本地<br> <code>git remote -v</code>查看远程库信息</p>
+<p> 提交本地仓库所有内容，<code>-u</code>表示将本地master分支与远程的origin分支关联起来，在以后的推送和拉取时可以简化命令为<code>git push origin master</code>将本地库的内容推送到远程。<br> <code>git clone https://github.com/your_name/repository_name.git</code>将远程库中内容拷贝到本地，也可以达到关联的目的。<br> <code>git remote -v</code>查看远程库信息<br> <code>git pull</code> 从远程抓取分支，每次提交本地库到远程库之前执行，如有冲突，先处理冲突.</p>
+</li>
+<li><p>分支相关命令</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">git branch //查看已有分支，当前分支会有*标志</div><div class="line">git branch dev //创建分支</div><div class="line">git checkout dev //切换该分支</div><div class="line">git checkout -b &lt;name&gt; //创建+切换分支</div><div class="line">git merge &lt;name&gt; //将某分支合并到当前分支上</div><div class="line">git branch -d &lt;name&gt; //删除某分支</div><div class="line">   git branch -D &lt;name&gt; //强制删除分支</div><div class="line">   git branch --set-upstream branch-name origin/branch-name</div></pre></td></tr></table></figure>
+<p> 分支合并：<br> Git用&lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，&gt;&gt;&gt;&gt;&gt;&gt;&gt;标记出不同分支的内容，当合并分支出新冲突时，用<code>git status</code>查看具体情况，再手动修改合，排除冲突后进行合并。<br> <code>git log --graph</code>，查看分支合并图<br> <code>--no-ff</code>，合并分支时使用此参数，合并后的历史有分支，可以看出来哪些曾经修改过。<br> <code>git stash</code>，储存当前工作现场，使用<code>git stash list</code>查看存储的工作现场，使用<code>git stash applay</code>恢复（需要使用<code>git stash drop</code>删除stash内容）， 或者使用<code>git stash pop</code>恢复的同时将stash的内容删除</p>
+</li>
+<li><p>标签操作<br><code>git tag &lt;name&gt;</code>用于新建一个标签，默认为<code>HEAD</code>，也可以指定一个<code>commit id</code>；<br><code>git tag -a &lt;tagname&gt; -m &quot;blablabla...&quot;</code>可以指定标签信息；<br><code>git tag -s &lt;tagname&gt; -m &quot;blablabla...&quot;</code>可以用PGP签名标签；<br><code>git tag</code>可以查看所有标签。<br><code>git push origin &lt;tagname&gt;</code>可以推送一个本地标签；<br><code>git push origin --tags</code>可以推送全部未推送过的本地标签；<br><code>git tag -d &lt;tagname&gt;</code>可以删除一个本地标签；<br><code>git push origin :refs/tags/&lt;tagname&gt;</code>可以删除一个远程标签</p>
+</li>
+<li><p>其他<br><code>git config --global color.ui true</code>:让Git显示颜色，会让命令输出看起来更醒目<br><strong>.gitignore</strong>忽略特殊文件，用户可以修改指定忽略的文件</p>
 </li>
 </ol>
-<ol>
-<li><code>git checkout -b dev</code>创建==dev==分支，并且切换到该分支。相当于</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git branch //查看已有分支，当前分支会有*标志</div><div class="line">git branch dev //创建分支</div><div class="line">git checkout dev //切换该分支</div><div class="line">git checkout -b &lt;name&gt; //创建+切换分支</div><div class="line">git merge &lt;name&gt; //将某分支合并到当前分支上</div><div class="line">git branch -d &lt;name&gt; //删除某分支</div></pre></td></tr></table></figure>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[OpenCL + Intel + VS2013环境搭建]]></title>
+      <url>http://harveyhuang.github.io/2016/08/28/OpenCL%20+%20Intel%20+%20VS2013%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>使用Intel实现的OpenCL做异构并行计算</p>
+</blockquote>
+<p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
+<h3 id="安装VS2013"><a href="#安装VS2013" class="headerlink" title="安装VS2013"></a>安装VS2013</h3><h3 id="安装Intel-OpenCL-SDK"><a href="#安装Intel-OpenCL-SDK" class="headerlink" title="安装Intel OpenCL SDK"></a>安装Intel OpenCL SDK</h3><h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><h3 id="实用代码框架"><a href="#实用代码框架" class="headerlink" title="实用代码框架"></a>实用代码框架</h3>]]></content>
     </entry>
     
     <entry>

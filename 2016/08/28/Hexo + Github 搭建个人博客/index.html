@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://harveyhuang.github.io/2016/08/28/Hexo + Github 搭建个人博客/index.html">
 <meta property="og:site_name" content="Harvey Huang's Blog">
 <meta property="og:description" content="看见网上的大神们在github上搭建自己的博客，便也手痒了，也想搭一个，本文记载了搭建博客的整个过程">
-<meta property="og:updated_time" content="2016-08-28T06:50:40.435Z">
+<meta property="og:updated_time" content="2016-08-31T15:18:40.252Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + Github 搭建个人博客">
 <meta name="twitter:description" content="看见网上的大神们在github上搭建自己的博客，便也手痒了，也想搭一个，本文记载了搭建博客的整个过程">
@@ -317,7 +317,45 @@
 <p>看见网上的大神们在<code>github</code>上搭建自己的博客，便也手痒了，也想搭一个，本文记载了搭建博客的整个过程</p>
 </blockquote>
 <p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
-<h3 id="申请git账号"><a href="#申请git账号" class="headerlink" title="申请git账号"></a>申请git账号</h3><h3 id="新建一个和自己用户名一样的repository"><a href="#新建一个和自己用户名一样的repository" class="headerlink" title="新建一个和自己用户名一样的repository"></a>新建一个和自己用户名一样的<strong>repository</strong></h3><h3 id="本地安装git"><a href="#本地安装git" class="headerlink" title="本地安装git"></a>本地安装git</h3><h3 id="添加SSHkey"><a href="#添加SSHkey" class="headerlink" title="添加SSHkey"></a>添加SSHkey</h3><h3 id="下载安装nodejs"><a href="#下载安装nodejs" class="headerlink" title="下载安装nodejs"></a>下载安装nodejs</h3><h3 id="下载安装Hexo"><a href="#下载安装Hexo" class="headerlink" title="下载安装Hexo"></a>下载安装Hexo</h3><h3 id="开始搭建一个hello-world博客"><a href="#开始搭建一个hello-world博客" class="headerlink" title="开始搭建一个hello world博客"></a>开始搭建一个<code>hello world</code>博客</h3><h3 id="写一篇自己的文章"><a href="#写一篇自己的文章" class="headerlink" title="写一篇自己的文章"></a>写一篇自己的文章</h3><h3 id="应用主题"><a href="#应用主题" class="headerlink" title="应用主题"></a>应用主题</h3><h3 id="博客维护"><a href="#博客维护" class="headerlink" title="博客维护"></a>博客维护</h3>
+<h3 id="申请git账号"><a href="#申请git账号" class="headerlink" title="申请git账号"></a>申请git账号</h3><h3 id="新建一个和自己用户名一样的repository"><a href="#新建一个和自己用户名一样的repository" class="headerlink" title="新建一个和自己用户名一样的repository"></a>新建一个和自己用户名一样的<strong>repository</strong></h3><p>For example，我的github的用户名时HarveyHub，所以我建的repository名为 HarveyHub.github.io</p>
+<h3 id="本地安装git"><a href="#本地安装git" class="headerlink" title="本地安装git"></a>本地安装git</h3><h3 id="添加SSHkey"><a href="#添加SSHkey" class="headerlink" title="添加SSHkey"></a>添加SSHkey</h3><ul>
+<li>参考<a href="https://harveyhub.github.io/2016/08/28/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_blank" rel="external">git学习笔记</a>中环境配置，添加SSH key<h3 id="下载安装nodejs-nodejs中文官网"><a href="#下载安装nodejs-nodejs中文官网" class="headerlink" title="下载安装nodejs nodejs中文官网"></a>下载安装nodejs <a href="http://nodejs.cn/" target="_blank" rel="external">nodejs中文官网</a></h3></li>
+</ul>
+<h3 id="下载安装Hexo"><a href="#下载安装Hexo" class="headerlink" title="下载安装Hexo"></a>下载安装Hexo</h3><ul>
+<li>安装好nodejs之后，可以使用<code>npm install hexo-cli -g</code>名利安装Hexo<h3 id="开始搭建一个hello-world博客"><a href="#开始搭建一个hello-world博客" class="headerlink" title="开始搭建一个hello world博客"></a>开始搭建一个<code>hello world</code>博客</h3></li>
+</ul>
+<ol>
+<li>新建blog文件夹</li>
+<li><code>hexo init blog</code></li>
+<li><code>npm install</code></li>
+<li><code>hexo generate</code>也可以简写为<code>hexo g</code></li>
+<li><code>hexo server</code>启动本地服务器，进入<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 预览</li>
+<li><p>修改blog目录下的配置文件<code>_config.yml</code></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/HarveyHub/HarveyHub.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行命令<code>npm install hexo-deployer-git --save</code></p>
+</li>
+<li>这时使用<code>hexo deploy</code>命令发布网站之后，就会在 harveyhub.github.io访问到helloworld博客。<h3 id="写一篇自己的博文，并发布"><a href="#写一篇自己的博文，并发布" class="headerlink" title="写一篇自己的博文，并发布"></a>写一篇自己的博文，并发布</h3></li>
+<li>hexo new “postName” #新建文章，在<strong>source/_post/</strong>中生成<code>postName.md</code>文件</li>
+<li><code>hexo new &quot;pageName&quot;</code> #新建页面</li>
+<li><code>hexo generate</code> #生成静态页面到public目录</li>
+<li><code>hexo server</code> #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）</li>
+<li><code>hexo deploy</code> #发布博文，将github作为静态网站的服务器</li>
+<li><code>hexo help</code> #查看帮助</li>
+<li><code>hexo version</code> #查看hexo版本<h3 id="应用主题"><a href="#应用主题" class="headerlink" title="应用主题"></a>应用主题</h3><a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">Hexo All Themes</a>中有很多主题，<code>git clone</code>到本地blog/themes，把blog根目录中 <code>_config.yml</code> 中<code>theme:</code>对应的值改为主题名，之后一步步按照<strong>readme.md</strong>文件中安装主题<h3 id="博客维护"><a href="#博客维护" class="headerlink" title="博客维护"></a>博客维护</h3></li>
+<li><code>hexo new &quot;postName&quot;/&quot;</code> <code>hexo new page &quot;pageName&quot;</code></li>
+<li><code>hexo clean</code>删除public文件夹中已经生成的静态页面，让人不爽的是把图片也删除了。这样markdown文件里面的图片就不能在网页中显示了。</li>
+<li><code>hexo generate</code></li>
+<li>如果markdown文件中引用了图片，记得把图片放入到public中博文相应的目录，因为<code>git clean</code>之后图片会被删除。</li>
+<li><code>hexo deploy</code><h3 id="hexo文章模板"><a href="#hexo文章模板" class="headerlink" title="hexo文章模板"></a>hexo文章模板</h3></li>
+</ol>
+<ul>
+<li><p>模板可按个人需求修改</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">title:  博文名</div><div class="line">date: 时间日期</div><div class="line">categories:</div><div class="line">  - 文章分类名1</div><div class="line">  - 文章分类名2</div><div class="line">tags: </div><div class="line">  - 文章标签1</div><div class="line">  - 文章标签2</div><div class="line">top: 1 #文章置顶</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>文章分类、文章标签分类需要主题支持</strong></p>
+
       
     </div>
     
@@ -328,7 +366,7 @@
         <p><span>本文标题:</span><a href="/2016/08/28/Hexo + Github 搭建个人博客/">Hexo + Github 搭建个人博客</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Harvey Huang</a></p>
         <p><span>发布时间:</span>2016-08-28, 00:00:00</p>
-        <p><span>最后更新:</span>2016-08-28, 14:50:40</p>
+        <p><span>最后更新:</span>2016-08-31, 23:18:40</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/08/28/Hexo + Github 搭建个人博客/" title="Hexo + Github 搭建个人博客">http://harveyhuang.github.io/2016/08/28/Hexo + Github 搭建个人博客/</a>
             <span class="copy-path" data-clipboard-text="原文: http://harveyhuang.github.io/2016/08/28/Hexo + Github 搭建个人博客/　　作者: Harvey Huang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -345,8 +383,8 @@
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/08/28/OpenCL + Intel + VS2013环境搭建/">
-                    OpenCL + Intel + VS2013环境搭建
+                <a href="/2016/08/28/git学习笔记/">
+                    git学习笔记
                 </a>
             </div>
         
@@ -358,7 +396,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#申请git账号"><span class="toc-number">1.</span> <span class="toc-text">申请git账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建一个和自己用户名一样的repository"><span class="toc-number">2.</span> <span class="toc-text">新建一个和自己用户名一样的repository</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地安装git"><span class="toc-number">3.</span> <span class="toc-text">本地安装git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加SSHkey"><span class="toc-number">4.</span> <span class="toc-text">添加SSHkey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载安装nodejs"><span class="toc-number">5.</span> <span class="toc-text">下载安装nodejs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载安装Hexo"><span class="toc-number">6.</span> <span class="toc-text">下载安装Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始搭建一个hello-world博客"><span class="toc-number">7.</span> <span class="toc-text">开始搭建一个hello world博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写一篇自己的文章"><span class="toc-number">8.</span> <span class="toc-text">写一篇自己的文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用主题"><span class="toc-number">9.</span> <span class="toc-text">应用主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#博客维护"><span class="toc-number">10.</span> <span class="toc-text">博客维护</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#申请git账号"><span class="toc-number">1.</span> <span class="toc-text">申请git账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建一个和自己用户名一样的repository"><span class="toc-number">2.</span> <span class="toc-text">新建一个和自己用户名一样的repository</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地安装git"><span class="toc-number">3.</span> <span class="toc-text">本地安装git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加SSHkey"><span class="toc-number">4.</span> <span class="toc-text">添加SSHkey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载安装nodejs-nodejs中文官网"><span class="toc-number">5.</span> <span class="toc-text">下载安装nodejs nodejs中文官网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载安装Hexo"><span class="toc-number">6.</span> <span class="toc-text">下载安装Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始搭建一个hello-world博客"><span class="toc-number">7.</span> <span class="toc-text">开始搭建一个hello world博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写一篇自己的博文，并发布"><span class="toc-number">8.</span> <span class="toc-text">写一篇自己的博文，并发布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用主题"><span class="toc-number">9.</span> <span class="toc-text">应用主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#博客维护"><span class="toc-number">10.</span> <span class="toc-text">博客维护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo文章模板"><span class="toc-number">11.</span> <span class="toc-text">hexo文章模板</span></a></li></ol>
         
     </div>
     <style>
@@ -439,13 +477,13 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/08/28/OpenCL + Intel + VS2013环境搭建/" title="下一篇: OpenCL + Intel + VS2013环境搭建">
+            <a href="/2016/08/28/git学习笔记/" title="下一篇: git学习笔记">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/Hexo + Github 搭建个人博客/">Hexo + Github 搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/OpenCL + Intel + VS2013环境搭建/">OpenCL + Intel + VS2013环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/git学习笔记/">git学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/notepad++配置/">notepad++配置</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/Hexo + Github 搭建个人博客/">Hexo + Github 搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/git学习笔记/">git学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/OpenCL + Intel + VS2013环境搭建/">OpenCL + Intel + VS2013环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/notepad++配置/">notepad++配置</a></li></ul>
 
 
 

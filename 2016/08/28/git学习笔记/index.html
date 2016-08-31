@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://harveyhuang.github.io/2016/08/28/git学习笔记/index.html">
 <meta property="og:site_name" content="Harvey Huang's Blog">
 <meta property="og:description" content="学习廖雪峰git教程的笔记">
-<meta property="og:updated_time" content="2016-08-28T08:31:27.529Z">
+<meta property="og:updated_time" content="2016-08-31T14:22:37.233Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git学习笔记">
 <meta name="twitter:description" content="学习廖雪峰git教程的笔记">
@@ -324,28 +324,35 @@
 </li>
 </ol>
 <h3 id="常用命令及其功能"><a href="#常用命令及其功能" class="headerlink" title="常用命令及其功能"></a>常用命令及其功能</h3><h4 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h4><ol>
-<li><code>git init</code>，讲当前目录变成<strong>Git</strong>可以管理的仓库</li>
+<li><code>git init</code>，将当前目录变成<strong>Git</strong>可以管理的仓库</li>
 <li><code>git add &quot;existed file/folder</code>，将该文件提交到<strong>stage</strong>，当后面是文件夹时，提交该文件夹下所有内容</li>
 <li><code>git commit -m &quot;describe of commition&quot;</code>，将<code>git add</code>提交到<strong>stage</strong>的内容提交到仓库中。</li>
 <li><code>git status</code>查看仓库当前状态。</li>
 <li><code>git diff &quot;file name&quot;</code>，比较仓库中==filename==文件和工作区中该文件的区别</li>
 <li><code>git log</code>或<code>git log --pretty=online</code>，显示从最近到最远的提交日志</li>
+<li><code>gitk</code>可进入图形界面</li>
 <li><code>git reset --hard HEAD^</code>，将工作区中的内容回溯到上一次提交之前。<code>HEAD</code>表示当前版本，上一个版本时<code>HEAD^</code>，上上个版本是<code>HEAD^^</code>，往前N个版本就是<code>HEAD~N</code>。<code>git reset --hard</code>之后也可以接版本ID（很长的一串数字）。</li>
 <li><code>git reflog</code>用来记录每一次命令，上面有之前提交的版本号，这样方便回溯或切换到之后版本。</li>
 <li><code>git checkout -- file</code>，检出==file==在库中的版本，这会覆盖掉工作区中的==file==，从而实现的功能是<strong>撤销工作区文件的删改</strong>，<code>git reset HEAD file</code>把<strong>stage中的==file==撤销掉</strong></li>
-<li><code>git rm &quot;file&quot;</code>删除仓库中==file==文件。使用完该命令之后就不能从仓库中<code>git chechout &quot;file&quot;</code>检出该文件了。如果只是本地删除，可以检出恢复。</li>
-<li><code>ssh-keygen -t res -C &quot;your email@example.com&quot;</code>，创建SSH Key，一路回车下去，就会发现在用户目录下有<code>.ssh</code>目录，目录中会有<code>id_rsa</code>和<code>id_rsa.pub</code>，这两个是<strong>SSH Key</strong>密钥对，<code>id_rsa</code>是私钥，不能泄露，<code>id_rsa.pub</code>是公钥，可以放心的告诉别人。<br>登陆GitHub，打开”Account setting”，”SSH Keys”界面，点”Add SSH Key”，填上title，在Key文本框里粘贴<code>id_rsa.pub</code>中的内容。点”Add Key”，就可以看到已经添加的Key</li>
+<li><p><code>git rm &quot;file&quot;</code>删除仓库中==file==文件。使用完该命令之后就不能从仓库中<code>git chechout &quot;file&quot;</code>检出该文件了。如果只是本地删除，可以检出恢复。</p>
+</li>
+<li><p><code>ssh-keygen -t res -C &quot;your email@example.com&quot;</code>，创建SSH Key，一路回车下去，就会发现在用户目录下有<code>.ssh</code>目录，目录中会有<code>id_rsa</code>和<code>id_rsa.pub</code>，这两个是<strong>SSH Key</strong>密钥对，<code>id_rsa</code>是私钥，不能泄露，<code>id_rsa.pub</code>是公钥，可以放心的告诉别人。<br>登陆GitHub，点击右边自己的头像打开<strong>Setting</strong>，左边的列表中会有<strong>SSH and GPG keys</strong>，点击之后在右边会看到<strong>New SSH Key</strong>，填上<strong>Title</strong>，在Key文本框里粘贴<code>id_rsa.pub</code>中的内容。点<strong>Add SSH Key</strong>，就可以看到已经添加的Key。</p>
+</li>
 </ol>
 <h4 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h4><ol>
 <li><p>关联远程仓库和本地仓库，在GitHub创建好空的==repository==之后，根据提示关联已经有的本地仓库，在本地仓库目录下执行</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote add origin https://github.com/your_name/repository_name.git</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
-<p> 提交本地仓库所有内容，<code>-u</code>表示将本地master分支与远程的origin分支关联起来，在以后的推送和拉取时可以简化命令为<code>git push origin master</code>将本地库的内容推送到远程。<br> <code>git clone https://github.com/your_name/repository_name.git</code>将远程库中内容拷贝到本地<br> <code>git remote -v</code>查看远程库信息</p>
+<p> 提交本地仓库所有内容，<code>-u</code>表示将本地master分支与远程的origin分支关联起来，在以后的推送和拉取时可以简化命令为<code>git push origin master</code>将本地库的内容推送到远程。<br> <code>git clone https://github.com/your_name/repository_name.git</code>将远程库中内容拷贝到本地，也可以达到关联的目的。<br> <code>git remote -v</code>查看远程库信息<br> <code>git pull</code> 从远程抓取分支，每次提交本地库到远程库之前执行，如有冲突，先处理冲突.</p>
+</li>
+<li><p>分支相关命令</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">git branch //查看已有分支，当前分支会有*标志</div><div class="line">git branch dev //创建分支</div><div class="line">git checkout dev //切换该分支</div><div class="line">git checkout -b &lt;name&gt; //创建+切换分支</div><div class="line">git merge &lt;name&gt; //将某分支合并到当前分支上</div><div class="line">git branch -d &lt;name&gt; //删除某分支</div><div class="line">   git branch -D &lt;name&gt; //强制删除分支</div><div class="line">   git branch --set-upstream branch-name origin/branch-name</div></pre></td></tr></table></figure>
+<p> 分支合并：<br> Git用&lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，&gt;&gt;&gt;&gt;&gt;&gt;&gt;标记出不同分支的内容，当合并分支出新冲突时，用<code>git status</code>查看具体情况，再手动修改合，排除冲突后进行合并。<br> <code>git log --graph</code>，查看分支合并图<br> <code>--no-ff</code>，合并分支时使用此参数，合并后的历史有分支，可以看出来哪些曾经修改过。<br> <code>git stash</code>，储存当前工作现场，使用<code>git stash list</code>查看存储的工作现场，使用<code>git stash applay</code>恢复（需要使用<code>git stash drop</code>删除stash内容）， 或者使用<code>git stash pop</code>恢复的同时将stash的内容删除</p>
+</li>
+<li><p>标签操作<br><code>git tag &lt;name&gt;</code>用于新建一个标签，默认为<code>HEAD</code>，也可以指定一个<code>commit id</code>；<br><code>git tag -a &lt;tagname&gt; -m &quot;blablabla...&quot;</code>可以指定标签信息；<br><code>git tag -s &lt;tagname&gt; -m &quot;blablabla...&quot;</code>可以用PGP签名标签；<br><code>git tag</code>可以查看所有标签。<br><code>git push origin &lt;tagname&gt;</code>可以推送一个本地标签；<br><code>git push origin --tags</code>可以推送全部未推送过的本地标签；<br><code>git tag -d &lt;tagname&gt;</code>可以删除一个本地标签；<br><code>git push origin :refs/tags/&lt;tagname&gt;</code>可以删除一个远程标签</p>
+</li>
+<li><p>其他<br><code>git config --global color.ui true</code>:让Git显示颜色，会让命令输出看起来更醒目<br><strong>.gitignore</strong>忽略特殊文件，用户可以修改指定忽略的文件</p>
 </li>
 </ol>
-<ol>
-<li><code>git checkout -b dev</code>创建==dev==分支，并且切换到该分支。相当于</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git branch //查看已有分支，当前分支会有*标志</div><div class="line">git branch dev //创建分支</div><div class="line">git checkout dev //切换该分支</div><div class="line">git checkout -b &lt;name&gt; //创建+切换分支</div><div class="line">git merge &lt;name&gt; //将某分支合并到当前分支上</div><div class="line">git branch -d &lt;name&gt; //删除某分支</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -357,7 +364,7 @@
         <p><span>本文标题:</span><a href="/2016/08/28/git学习笔记/">git学习笔记</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Harvey Huang</a></p>
         <p><span>发布时间:</span>2016-08-28, 00:00:00</p>
-        <p><span>最后更新:</span>2016-08-28, 16:31:27</p>
+        <p><span>最后更新:</span>2016-08-31, 22:22:37</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/08/28/git学习笔记/" title="git学习笔记">http://harveyhuang.github.io/2016/08/28/git学习笔记/</a>
             <span class="copy-path" data-clipboard-text="原文: http://harveyhuang.github.io/2016/08/28/git学习笔记/　　作者: Harvey Huang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -373,15 +380,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/08/28/OpenCL + Intel + VS2013环境搭建/">
-                    OpenCL + Intel + VS2013环境搭建
+                <a href="/2016/08/28/Hexo + Github 搭建个人博客/">
+                    Hexo + Github 搭建个人博客
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/08/27/notepad++配置/">
-                    notepad++配置
+                <a href="/2016/08/28/OpenCL + Intel + VS2013环境搭建/">
+                    OpenCL + Intel + VS2013环境搭建
                 </a>
             </div>
         
@@ -468,7 +475,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/08/28/OpenCL + Intel + VS2013环境搭建/" title="上一篇: OpenCL + Intel + VS2013环境搭建">
+            <a href="/2016/08/28/Hexo + Github 搭建个人博客/" title="上一篇: Hexo + Github 搭建个人博客">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -476,13 +483,13 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/08/27/notepad++配置/" title="下一篇: notepad++配置">
+            <a href="/2016/08/28/OpenCL + Intel + VS2013环境搭建/" title="下一篇: OpenCL + Intel + VS2013环境搭建">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/Hexo + Github 搭建个人博客/">Hexo + Github 搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/OpenCL + Intel + VS2013环境搭建/">OpenCL + Intel + VS2013环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/git学习笔记/">git学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/notepad++配置/">notepad++配置</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/Hexo + Github 搭建个人博客/">Hexo + Github 搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/git学习笔记/">git学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/OpenCL + Intel + VS2013环境搭建/">OpenCL + Intel + VS2013环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/notepad++配置/">notepad++配置</a></li></ul>
 
 
 
