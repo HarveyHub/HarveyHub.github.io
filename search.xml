@@ -28,8 +28,10 @@
 </li>
 <li><p>执行命令<code>npm install hexo-deployer-git --save</code></p>
 </li>
-<li>这时使用<code>hexo deploy</code>命令发布网站之后，就会在 harveyhub.github.io访问到helloworld博客。<h3 id="写一篇自己的博文，并发布"><a href="#写一篇自己的博文，并发布" class="headerlink" title="写一篇自己的博文，并发布"></a>写一篇自己的博文，并发布</h3></li>
-<li>hexo new “postName” #新建文章，在<strong>source/_post/</strong>中生成<code>postName.md</code>文件</li>
+<li>这时使用<code>hexo deploy</code>命令发布网站之后，就会在 harveyhub.github.io访问到helloworld博客。</li>
+</ol>
+<h3 id="写一篇自己的博文并发布"><a href="#写一篇自己的博文并发布" class="headerlink" title="写一篇自己的博文并发布"></a>写一篇自己的博文并发布</h3><ol>
+<li><code>hexo new &quot;postName&quot;</code> #新建文章，在<strong>source/_post/</strong>中生成<code>postName.md</code>文件</li>
 <li><code>hexo new &quot;pageName&quot;</code> #新建页面</li>
 <li><code>hexo generate</code> #生成静态页面到public目录</li>
 <li><code>hexo server</code> #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）</li>
@@ -40,9 +42,9 @@
 <li><code>hexo clean</code>删除public文件夹中已经生成的静态页面，让人不爽的是把图片也删除了。这样markdown文件里面的图片就不能在网页中显示了。</li>
 <li><code>hexo generate</code></li>
 <li>如果markdown文件中引用了图片，记得把图片放入到public中博文相应的目录，因为<code>git clean</code>之后图片会被删除。</li>
-<li><code>hexo deploy</code><h3 id="hexo文章模板"><a href="#hexo文章模板" class="headerlink" title="hexo文章模板"></a>hexo文章模板</h3></li>
+<li><code>hexo deploy</code></li>
 </ol>
-<ul>
+<h3 id="hexo文章模板"><a href="#hexo文章模板" class="headerlink" title="hexo文章模板"></a>hexo文章模板</h3><ul>
 <li><p>模板可按个人需求修改</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">title:  博文名</div><div class="line">date: 时间日期</div><div class="line">categories:</div><div class="line">  - 文章分类名1</div><div class="line">  - 文章分类名2</div><div class="line">tags: </div><div class="line">  - 文章标签1</div><div class="line">  - 文章标签2</div><div class="line">top: 1 #文章置顶</div></pre></td></tr></table></figure>
 </li>
@@ -116,13 +118,16 @@
 </blockquote>
 <p><excerpt in="" index=""><br><a id="more"></a>     </excerpt></p>
 <h3 id="前期工作"><a href="#前期工作" class="headerlink" title="前期工作"></a>前期工作</h3><ol>
-<li>安装好Python环境，在安装时勾选<strong>Add python.exe to Path</strong><br> 这样做的好处是，不需要另外为python添加环境变量<br><img src="images/1472308223928.jpg" alt="python添加环境变量"></li>
-<li>安装好<strong>MinGW</strong>，即windows环境下的<code>GCC</code>。这个可以从<strong>Code-Block</strong>或者<strong>Dev-Cpp</strong>中抽取，毕竟从官网中下载太过麻烦。</li>
+<li><p>安装好Python环境，在安装时勾选<strong>Add python.exe to Path</strong><br> 这样做的好处是，不需要另外为python添加环境变量</p>
+</li>
+<li><p>安装好<strong>MinGW</strong>，即windows环境下的<code>GCC</code>。这个可以从<strong>Code-Block</strong>或者<strong>Dev-Cpp</strong>中抽取，毕竟从官网中下载太过麻烦。</p>
+</li>
 <li>安装好<code>JDK</code>和<code>JRE</code>（如果你想使用notepad++编辑<code>java</code>程序），并为之配置环境变量</li>
-<li>在notepad++中安装<strong>NppExec</strong>插件，在插件管理器中能够找到。<br><img src="images/1472308752134.jpg" alt="安装NppExec"></li>
+<li>在notepad++中安装<strong>NppExec</strong>插件，在插件管理器中能够找到。</li>
 </ol>
+<p><img src="/imags/test.jpg" alt="test"></p>
 <h3 id="添加执行脚本"><a href="#添加执行脚本" class="headerlink" title="添加执行脚本"></a>添加执行脚本</h3><ul>
-<li>安装完<strong>NppExec</strong> 之后，点击==F6==键便可键入脚本，输入下面的脚本之后保存。<br><img src="images/1472309585979.jpg" alt="书写NPP脚本"></li>
+<li>安装完<strong>NppExec</strong> 之后，点击==F6==键便可键入脚本，输入下面的脚本之后保存。                     </li>
 </ul>
 <ol>
 <li><p><code>CC</code>执行脚本</p>
