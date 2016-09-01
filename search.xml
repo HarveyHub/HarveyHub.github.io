@@ -54,6 +54,16 @@
     </entry>
     
     <entry>
+      <title><![CDATA[OpenCL + Intel + VS2013环境搭建]]></title>
+      <url>http://harveyhuang.github.io/2016/08/28/OpenCL%20+%20Intel%20+%20VS2013%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>使用Intel实现的OpenCL做异构并行计算</p>
+</blockquote>
+<p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
+<h3 id="安装VS2013"><a href="#安装VS2013" class="headerlink" title="安装VS2013"></a>安装VS2013</h3><h3 id="安装Intel-OpenCL-SDK"><a href="#安装Intel-OpenCL-SDK" class="headerlink" title="安装Intel OpenCL SDK"></a>安装Intel OpenCL SDK</h3><h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><h3 id="实用代码框架"><a href="#实用代码框架" class="headerlink" title="实用代码框架"></a>实用代码框架</h3>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[git学习笔记]]></title>
       <url>http://harveyhuang.github.io/2016/08/28/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -100,16 +110,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[OpenCL + Intel + VS2013环境搭建]]></title>
-      <url>http://harveyhuang.github.io/2016/08/28/OpenCL%20+%20Intel%20+%20VS2013%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>使用Intel实现的OpenCL做异构并行计算</p>
-</blockquote>
-<p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
-<h3 id="安装VS2013"><a href="#安装VS2013" class="headerlink" title="安装VS2013"></a>安装VS2013</h3><h3 id="安装Intel-OpenCL-SDK"><a href="#安装Intel-OpenCL-SDK" class="headerlink" title="安装Intel OpenCL SDK"></a>安装Intel OpenCL SDK</h3><h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><h3 id="实用代码框架"><a href="#实用代码框架" class="headerlink" title="实用代码框架"></a>实用代码框架</h3>]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[notepad++配置]]></title>
       <url>http://harveyhuang.github.io/2016/08/27/notepad++%E9%85%8D%E7%BD%AE/</url>
       <content type="html"><![CDATA[<p><strong>引言</strong></p>
@@ -125,6 +125,7 @@
 <li>安装好<code>JDK</code>和<code>JRE</code>（如果你想使用notepad++编辑<code>java</code>程序），并为之配置环境变量</li>
 <li>在notepad++中安装<strong>NppExec</strong>插件，在插件管理器中能够找到。</li>
 </ol>
+<p><img src="/images/test.jpg" alt="test"></p>
 <h3 id="添加执行脚本"><a href="#添加执行脚本" class="headerlink" title="添加执行脚本"></a>添加执行脚本</h3><ul>
 <li>安装完<strong>NppExec</strong> 之后，点击==F6==键便可键入脚本，输入下面的脚本之后保存。                     </li>
 </ul>
