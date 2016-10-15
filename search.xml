@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title><![CDATA[Linux服务器常用配置方法]]></title>
+      <url>http://harveyhuang.github.io/2016/10/15/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>老胡最近租了个服务，周末闲着没事儿干的时候可以配置下玩玩</p>
+</blockquote>
+<p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
+<h3 id="利用Samba实现服务器和windows下文件共享"><a href="#利用Samba实现服务器和windows下文件共享" class="headerlink" title="利用Samba实现服务器和windows下文件共享"></a>利用<strong>Samba</strong>实现服务器和windows下文件共享</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1. 安装samba</span></div><div class="line">sudo apt-get install samba</div><div class="line"></div><div class="line"><span class="comment"># 2. 添加系统用户</span></div><div class="line">useradd username</div><div class="line">passwd username</div><div class="line"></div><div class="line"><span class="comment"># 3. 添加系统用户目录</span></div><div class="line"><span class="built_in">cd</span> /home</div><div class="line">mkdir username</div><div class="line">chown -R username</div><div class="line"></div><div class="line"><span class="comment"># 4. 添加samba用户</span></div><div class="line">smbpasswd <span class="_">-a</span> username</div><div class="line"></div><div class="line"><span class="comment"># 5. 配置samba</span></div><div class="line">vi /etc/samba/smb.conf</div><div class="line">[username]</div><div class="line">   comment = shared dir with username</div><div class="line">   path = /home/username</div><div class="line">   browseable = yes</div><div class="line">   writable = yes</div><div class="line">   <span class="built_in">read</span> only = no</div><div class="line">   guest ok = no</div><div class="line"></div><div class="line"><span class="comment"># 6. 重启samba</span></div><div class="line">/etc/init.d/samba restart</div></pre></td></tr></table></figure>
+<h3 id="修改Linux主机名"><a href="#修改Linux主机名" class="headerlink" title="修改Linux主机名"></a>修改Linux主机名</h3><ul>
+<li>暂时修改，下次会话生效</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 方法一</span></div><div class="line">    hostname newhostname</div><div class="line"><span class="comment"># 方法二</span></div><div class="line">	sysctl kernel.hostname</div></pre></td></tr></table></figure>
+<ul>
+<li>永久性修改</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vi /etc/hostname</div><div class="line"><span class="comment"># 如果没有上面的目录的话</span></div><div class="line">vi /etc/sysconfig/hostname</div></pre></td></tr></table></figure>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[近期感悟]]></title>
+      <url>http://harveyhuang.github.io/2016/09/01/%E8%BF%91%E6%9C%9F%E6%84%9F%E6%82%9F/</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Hexo + Github 搭建个人博客]]></title>
       <url>http://harveyhuang.github.io/2016/08/28/Hexo%20+%20Github%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -37,12 +62,22 @@
 <li><code>hexo server</code> #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）</li>
 <li><code>hexo deploy</code> #发布博文，将github作为静态网站的服务器</li>
 <li><code>hexo help</code> #查看帮助</li>
-<li><code>hexo version</code> #查看hexo版本<h3 id="应用主题"><a href="#应用主题" class="headerlink" title="应用主题"></a>应用主题</h3><a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">Hexo All Themes</a>中有很多主题，<code>git clone</code>到本地blog/themes，把blog根目录中 <code>_config.yml</code> 中<code>theme:</code>对应的值改为主题名，之后一步步按照<strong>readme.md</strong>文件中安装主题<h3 id="博客维护"><a href="#博客维护" class="headerlink" title="博客维护"></a>博客维护</h3></li>
+<li><code>hexo version</code> #查看hexo版本<h3 id="应用主题"><a href="#应用主题" class="headerlink" title="应用主题"></a>应用主题</h3><a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">Hexo All Themes</a>中有很多主题，<code>git clone</code>到本地blog/themes，把blog根目录中 <code>_config.yml</code> 中<code>theme:</code>对应的值改为主题名，之后一步步按照<strong>readme.md</strong>文件中安装主题</li>
+</ol>
+<h3 id="博客维护"><a href="#博客维护" class="headerlink" title="博客维护"></a>博客维护</h3><ol>
 <li><code>hexo new &quot;postName&quot;/&quot;</code> <code>hexo new page &quot;pageName&quot;</code></li>
 <li><code>hexo clean</code>删除public文件夹中已经生成的静态页面，让人不爽的是把图片也删除了。这样markdown文件里面的图片就不能在网页中显示了。</li>
 <li><code>hexo generate</code></li>
 <li>如果markdown文件中引用了图片，记得把图片放入到public中博文相应的目录，因为<code>git clean</code>之后图片会被删除。</li>
 <li><code>hexo deploy</code></li>
+</ol>
+<h3 id="添加图片"><a href="#添加图片" class="headerlink" title="添加图片"></a>添加图片</h3><ol>
+<li>在<code>source</code>文件夹下建一个<code>images</code>文件夹，把需要放在网上的图片修改好名字放在其中</li>
+<li><p>在md文件中包含图片时使用</p>
+ <figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![<span class="string">image decription</span>](<span class="link">/imags/image_n小书匠数据库ame.jpg</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>在小书匠编辑器中更改库为<strong>小书匠编辑器存储</strong>，资源引用路径改为<code>images</code>的上级目录，这样既能在小书匠编辑器中预览到图片，也能够将图片发布到网页中，不需要每次把图片考入<code>public</code>中博文相对应的目录中</p>
+</li>
 </ol>
 <h3 id="hexo文章模板"><a href="#hexo文章模板" class="headerlink" title="hexo文章模板"></a>hexo文章模板</h3><ul>
 <li><p>模板可按个人需求修改</p>
@@ -125,7 +160,6 @@
 <li>安装好<code>JDK</code>和<code>JRE</code>（如果你想使用notepad++编辑<code>java</code>程序），并为之配置环境变量</li>
 <li>在notepad++中安装<strong>NppExec</strong>插件，在插件管理器中能够找到。</li>
 </ol>
-<p><img src="/images/test.jpg" alt="test"></p>
 <h3 id="添加执行脚本"><a href="#添加执行脚本" class="headerlink" title="添加执行脚本"></a>添加执行脚本</h3><ul>
 <li>安装完<strong>NppExec</strong> 之后，点击==F6==键便可键入脚本，输入下面的脚本之后保存。                     </li>
 </ul>
