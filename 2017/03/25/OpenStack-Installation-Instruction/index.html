@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Harvey Huang" />
+
+
+
+<meta name="description" content="Abstract记录自己在装OpenStack时遇到的坑主流程参照陈沙克老师的博客和DevStack官网，主要参考陈沙克老师的==local.conf== 文件，修改了其中主机IP，固定IP等看完了OpenStack Configuration那部分的文档，之后再做修改，预计与创建的实例连接外网有关。尽管官网介绍的步骤非常简单，但是自己配置各种出错，按照博客中的原话，多执行脚本几次错误就过去了(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenStack Installation Instruction">
+<meta property="og:url" content="http://harveyhuang.github.io/2017/03/25/OpenStack-Installation-Instruction/index.html">
+<meta property="og:site_name" content="Harvey Huang's Blog">
+<meta property="og:description" content="Abstract记录自己在装OpenStack时遇到的坑主流程参照陈沙克老师的博客和DevStack官网，主要参考陈沙克老师的==local.conf== 文件，修改了其中主机IP，固定IP等看完了OpenStack Configuration那部分的文档，之后再做修改，预计与创建的实例连接外网有关。尽管官网介绍的步骤非常简单，但是自己配置各种出错，按照博客中的原话，多执行脚本几次错误就过去了(">
+<meta property="og:image" content="http://harveyhuang.github.io/2017/03/25/OpenStack-Installation-Instruction/1490436165621.jpg">
+<meta property="og:image" content="http://harveyhuang.github.io/2017/03/25/OpenStack-Installation-Instruction/1490439635024.jpg">
+<meta property="og:image" content="http://harveyhuang.github.io/2017/03/25/OpenStack-Installation-Instruction/1490440666752.jpg">
+<meta property="og:image" content="http://harveyhuang.github.io/2017/03/25/OpenStack-Installation-Instruction/1490458066888.jpg">
+<meta property="og:image" content="http://harveyhuang.github.io/2017/03/25/OpenStack-Installation-Instruction/1490516798724.jpg">
+<meta property="og:image" content="http://harveyhuang.github.io/2017/03/25/OpenStack-Installation-Instruction/1490516826062.jpg">
+<meta property="og:updated_time" content="2017-04-04T06:19:41.017Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenStack Installation Instruction">
+<meta name="twitter:description" content="Abstract记录自己在装OpenStack时遇到的坑主流程参照陈沙克老师的博客和DevStack官网，主要参考陈沙克老师的==local.conf== 文件，修改了其中主机IP，固定IP等看完了OpenStack Configuration那部分的文档，之后再做修改，预计与创建的实例连接外网有关。尽管官网介绍的步骤非常简单，但是自己配置各种出错，按照博客中的原话，多执行脚本几次错误就过去了(">
+<meta name="twitter:image" content="http://harveyhuang.github.io/2017/03/25/OpenStack-Installation-Instruction/1490436165621.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Harvey Huang&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/monkey.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>OpenStack Installation Instruction | Harvey Huang&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/harvey.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Harvey Huang</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto: huangwein@foxmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="http://weibo.com/u/3918978614" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/HarveyHub" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CC/">CC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notepad/">Notepad++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenStack/">OpenStack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Samba/">Samba</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmder/">cmder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pip/">pip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualenv/">virtualenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/时间测定/">时间测定</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Be a graceful coder.</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Harvey Huang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/harvey.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Harvey Huang</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto: huangwein@foxmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/3918978614" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/HarveyHub" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-OpenStack-Installation-Instruction" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/25/OpenStack-Installation-Instruction/" class="article-date">
+      <time datetime="2017-03-24T16:00:00.000Z" itemprop="datePublished">2017-03-25</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OpenStack Installation Instruction
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/学习/">学习</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenStack/">OpenStack</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>Abstract<br>记录自己在装OpenStack时遇到的坑<br>主流程参照<a href="http://www.chenshake.com/devstack-installation-and-testing/" target="_blank" rel="external">陈沙克老师的博客</a>和<a href="https://docs.openstack.org/developer/devstack/" target="_blank" rel="external">DevStack官网</a>，主要参考陈沙克老师的==local.conf== 文件，修改了其中主机IP，固定IP等看完了OpenStack Configuration那部分的文档，之后再做修改，预计与创建的实例连接外网有关。<br>尽管官网介绍的步骤非常简单，但是自己配置各种出错，按照博客中的原话，多执行脚本几次错误就过去了(网络问题)。</p>
+</blockquote>
+<p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
+<p>[toc]</p>
+<h3 id="VMware-网络配置"><a href="#VMware-网络配置" class="headerlink" title="VMware 网络配置"></a>VMware 网络配置</h3><p><a href="http://blog.csdn.net/clevercode/article/details/45934233" target="_blank" rel="external">VMware三种网络模式讲解</a><br><a href="http://www.2cto.com/os/201404/292853.html" target="_blank" rel="external">Ubuntu网络配置讲解</a><br>配置信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">VMware：12.0 pro</div><div class="line">Windows：Win10</div><div class="line">Ubuntu：14.04(推荐)</div><div class="line"></div><div class="line">Windows </div><div class="line">IP：192.168.1.108</div><div class="line">GW：192.168.1.1</div><div class="line"></div><div class="line">VMware</div><div class="line">- NAT Mode：利用主机的IP联网，有自己的网段，可配置</div><div class="line">IP：192.168.12.132</div><div class="line">GW：192.168.12.2</div><div class="line">MASK：255.255.255.0</div><div class="line"></div><div class="line"></div><div class="line">-Bridge Mode：和Windows的IP在同一网段，这和windows 路由器配置有关</div><div class="line">IP：192.168.1.x</div><div class="line">GW：192.168.1.1</div><div class="line">MASK：255.255.255.0</div></pre></td></tr></table></figure></p>
+<p>NAT模式在使用ssh连接时不容易掉线，而桥接模式容易被挤掉，出现==Connection closed by foreign host.== 错误。<br>在Windows下可以使用<code>ipconfig</code>查看ip设置，使用<code>arp -a</code>查看与虚拟机是否建立了连接，使用之前最好刷新一下虚拟机的网络，比如在虚拟机中上下网什么的。<br>在虚拟机Ubuntu中可以编辑 ==/etc/network/interfaces== 文件</p>
+<h3 id="VMware虚拟机配置"><a href="#VMware虚拟机配置" class="headerlink" title="VMware虚拟机配置"></a>VMware虚拟机配置</h3><ul>
+<li>需要配置多核且能虚拟化<br>虚拟机网络配置，VMware默认是NAT模式配地址，默认网关是<code>192.168.x.2</code><br>如果虚拟机没有自动连接网络，需点击一下<code>Auto Ethernet</code>，或者自己编辑网络地址</li>
+</ul>
+<h3 id="准备事项和错误"><a href="#准备事项和错误" class="headerlink" title="准备事项和错误"></a>准备事项和错误</h3><ul>
+<li><p><a href="http://blog.csdn.net/enoch612/article/details/52599726" target="_blank" rel="external">同步网络时间的方法</a><br>博客中关于同步时间的指令，不能执行，我参考了网上的。</p>
+</li>
+<li><p><a href="http://blog.csdn.net/my_renzhibo/article/details/7616711" target="_blank" rel="external">修改/etc/sudoers文件</a><br>使得==harvey==用户和==stack==使用<code>sudo</code>命令可以不用输入密码</p>
+</li>
+<li><p>HASH和不匹配问题</p>
+</li>
+</ul>
+<p><img src="/2017/03/25/OpenStack-Installation-Instruction/1490436165621.jpg" alt="HASH和不匹配问题" title="HASH和不匹配"><br><code>vi /etc/apt/source.list</code>注释掉无法解析的<code>extras</code>源，顺便说明一下，这个问题是通过Ubuntu 图形化界面选择源的，所以保留一些国外的源，就会产生问题，如果是国内的镜像出现这种问题，可以通过修改访问方式<code>https</code>或者修改<code>/etc/resolv.conf</code>文件中<code>namesever</code>为源相应的域名(没有亲测)</p>
+<ul>
+<li>安装过程中碰到从<code>https://pypi.python.org/</code>中下载<code>wheel</code>文件过慢的问题<ul>
+<li>可以参考<a href="http://www.cnblogs.com/microman/p/6107879.html" target="_blank" rel="external">加快从pipy中下载的速度</a></li>
+<li>也可以通过<code>wget</code>在<a href="http://pypi.douban.com/simple/" target="_blank" rel="external">pypi网站</a>命令提前下载好</li>
+<li>也可以直接在<a href="http://pypi.douban.com/simple/" target="_blank" rel="external">pypi网站</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#添加豆瓣源，直接复制一下内容即可</div><div class="line">mkdir ~/.pip</div><div class="line">cat &gt; ~/.pip/pip.conf &lt;&lt;EOF</div><div class="line">[global]</div><div class="line">index-url = http://pypi.douban.com/simple/</div><div class="line">trusted-host = pypi.douban.com</div><div class="line">EOF</div></pre></td></tr></table></figure>
+<ul>
+<li><p>通过<code>sudo find / -regex &quot;.+\.whl$&quot;</code>命令找到下载好的==whl==文件存放目录<br><img src="/2017/03/25/OpenStack-Installation-Instruction/1490439635024.jpg" alt="whl文件列表" title="whl文件列表"></p>
+</li>
+<li><p>在<code>upper-requirements.txt:271</code><br><img src="/2017/03/25/OpenStack-Installation-Instruction/1490440666752.jpg" alt="pysaml2 需求" title="pysaml2 需求"><br>需要的版本是4.0.2，文件大小为13.7M，我在pypi上找到的版本是4.4.0版本文件大小为4.3M。由于文件太大，下载容易出错，再来一次就好。或者使用wget 下载好放在<code>/usr/local/lib/python2.7/dist-packages</code>目录中</p>
+</li>
+<li><p>OpenstackSDK错误</p>
+</li>
+</ul>
+<p>![OpenstackSDK ERROR][12]</p>
+<p><img src="/2017/03/25/OpenStack-Installation-Instruction/1490458066888.jpg" alt="requirements/upper-constraints.txt" title="requirements/upper-constraints.txt"><br>修正方法有以下几种：</p>
+<ul>
+<li>将openstacksdk的版本调至<code>0.9.11</code>或者<code>0.9.12</code></li>
+<li>可以将出错模块==session.py==文件中<code>.__version__</code>给去掉</li>
+</ul>
+<h3 id="安装成功"><a href="#安装成功" class="headerlink" title="安装成功"></a>安装成功</h3><p><img src="/2017/03/25/OpenStack-Installation-Instruction/1490516798724.jpg" alt="主机中网页登陆界面" title="主机中网页登陆界面"></p>
+<p><img src="/2017/03/25/OpenStack-Installation-Instruction/1490516826062.jpg" alt="安装完成后命令行提示信息" title="安装完成后命令行提示信息"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/03/25/OpenStack-Installation-Instruction/">OpenStack Installation Instruction</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Harvey Huang</a></p>
+        <p><span>发布时间:</span>2017-03-25, 00:00:00</p>
+        <p><span>最后更新:</span>2017-04-04, 14:19:41</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/25/OpenStack-Installation-Instruction/" title="OpenStack Installation Instruction">http://harveyhuang.github.io/2017/03/25/OpenStack-Installation-Instruction/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://harveyhuang.github.io/2017/03/25/OpenStack-Installation-Instruction/　　作者: Harvey Huang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/04/04/Pycharm使用/">
+                    Pycharm使用
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/10/22/程序运行时间测定/">
+                    程序运行时间测定
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#VMware-网络配置"><span class="toc-number">1.</span> <span class="toc-text">VMware 网络配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VMware虚拟机配置"><span class="toc-number">2.</span> <span class="toc-text">VMware虚拟机配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准备事项和错误"><span class="toc-number">3.</span> <span class="toc-text">准备事项和错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装成功"><span class="toc-number">4.</span> <span class="toc-text">安装成功</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-4 i,
+        .toc-level-4 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"true"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"OpenStack Installation Instruction　| Harvey Huang's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/03/25/OpenStack-Installation-Instruction/" data-title="OpenStack Installation Instruction" data-url="http://harveyhuang.github.io/2017/03/25/OpenStack-Installation-Instruction/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"huqunxing"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/04/04/Pycharm使用/" title="上一篇: Pycharm使用">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/10/22/程序运行时间测定/" title="下一篇: 程序运行时间测定">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/11/Bash-Environment-On-Windows/">Bash Environment On Windows</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/Python Snacks/">Python Snacks</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/Pycharm使用/">Pycharm使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/25/OpenStack-Installation-Instruction/">OpenStack Installation Instruction</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/22/程序运行时间测定/">程序运行时间测定</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/15/Linux服务器常用配置方法/">Linux服务器常用配置方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/Hexo + Github 搭建个人博客/">Hexo + Github 搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/git学习笔记/">git学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/notepad++配置/">notepad++配置</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Harvey Huang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
