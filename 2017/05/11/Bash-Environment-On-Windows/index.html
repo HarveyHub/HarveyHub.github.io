@@ -51,17 +51,35 @@
   
 
   
+    
+      
+    
 
-  
-
+    
   
 
   
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -96,13 +114,12 @@
 <meta property="og:url" content="http://harveyhuang.github.io/2017/05/11/Bash-Environment-On-Windows/index.html">
 <meta property="og:site_name" content="Harvey Huang's Blog">
 <meta property="og:description" content="Abstract图片测试">
-<meta property="og:image" content="http://harveyhuang.github.io/2017/05/11/Bash-Environment-On-Windows/IMG_1758.JPG">
 <meta property="og:image" content="http://harveyhuang.github.io/2017/05/11/Bash-Environment-On-Windows/1494509838415.jpg">
-<meta property="og:updated_time" content="2017-05-12T15:00:38.523Z">
+<meta property="og:updated_time" content="2017-05-14T04:38:38.787Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bash Environment On Windows">
 <meta name="twitter:description" content="Abstract图片测试">
-<meta name="twitter:image" content="http://harveyhuang.github.io/2017/05/11/Bash-Environment-On-Windows/IMG_1758.JPG">
+<meta name="twitter:image" content="http://harveyhuang.github.io/2017/05/11/Bash-Environment-On-Windows/1494509838415.jpg">
 
 
 
@@ -324,7 +341,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Harvey Huang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/harvey.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -410,7 +427,7 @@
 </blockquote>
 <p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
 <p>[toc]</p>
-<p><img src="/2017/05/11/Bash-Environment-On-Windows/IMG_1758.JPG" alt="青春" title="青春"></p>
+<p><a href="Bash-Environment-On-Windows/IMG_1758.JPG" title="青春">青春</a></p>
 <h2 id="pip"><a href="#pip" class="headerlink" title="pip"></a>pip</h2><ul>
 <li><p>安装<br>windows 高版本python一般都自带pip，如果没有的话去Python的<a href="https://pypi.python.org/pypi/pip#downloads" target="_blank" rel="external">官网下载</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 解压后，进入该目录执行</div><div class="line">python setup.py install</div><div class="line"></div><div class="line"># linux安装</div><div class="line">sudo apt-get intall pip</div></pre></td></tr></table></figure>
@@ -421,7 +438,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># Windows源配置</div><div class="line">1. 在C:\Users\Harvey目录下创建pip文件夹</div><div class="line">2. 新建pip.in文件</div><div class="line"></div><div class="line"># Linux源配置</div><div class="line">1. /home/harvey/目录下创建.pip文件夹</div><div class="line">2. 新建pip.conf</div><div class="line"></div><div class="line"># pip.conf&amp;pip.ini内容</div><div class="line">[global]</div><div class="line">timeout = 60</div><div class="line">index-url = http://pypi.douban.com/simple</div><div class="line">trusted-host = pypi.douban.com</div></pre></td></tr></table></figure>
 <h2 id="virtualenv"><a href="#virtualenv" class="headerlink" title="virtualenv"></a>virtualenv</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">pip install virtualenv</div><div class="line"></div><div class="line"># 新建一个名字为 venv_name 的虚拟环境，并不拷入系统已经安装好的包</div><div class="line">virtualenv --no-site-packages venv_name -p python_version.exe</div><div class="line"># windows</div><div class="line">source venv_name/Scripts/activate</div><div class="line"></div><div class="line">which pip #查看是否引用虚拟环境下pip</div><div class="line">which python #查看是否引用虚拟环境下python版本</div><div class="line">pip -l # 查看安装了那些包</div><div class="line">pip install package_name  [-update]#安装第三方库</div><div class="line">pip download package_name &gt;= | == version_number</div></pre></td></tr></table></figure>
 <h2 id="bash配置"><a href="#bash配置" class="headerlink" title="bash配置"></a>bash配置</h2><ul>
-<li><a href="Bash-Environment-On-Windows/.bashrc">.bashrc</a></li>
+<li><a href="./.bashrc">.bashrc</a></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env bash</div><div class="line"></div><div class="line">export APP_HOME=/d/Program\ Files/</div><div class="line"># some more ls aliases</div><div class="line">alias ll=&apos;ls -alF&apos;    </div><div class="line">alias la=&apos;ls -A&apos;      </div><div class="line">alias l=&apos;ls -CF&apos;     </div><div class="line"># enable color support of ls and also add handy aliases                                    </div><div class="line">if [ -x /usr/bin/dircolors ]; then                                                         </div><div class="line">	test -r ~/.dircolors &amp;&amp; eval &quot;$(dircolors -b ~/.dircolors)&quot; || eval &quot;$(dircolors -b)&quot;  </div><div class="line">	alias ls=&apos;ls --color=auto&apos;                                                             </div><div class="line">	#alias dir=&apos;dir --color=auto&apos;                                                          </div><div class="line">	#alias vdir=&apos;vdir --color=auto&apos;                                                        </div><div class="line"></div><div class="line">	alias grep=&apos;grep --color=auto&apos;                                                         </div><div class="line">	alias fgrep=&apos;fgrep --color=auto&apos;                                                       </div><div class="line">	alias egrep=&apos;egrep --color=auto&apos;                                                       </div><div class="line">fi           </div><div class="line"></div><div class="line"># source ~/.colors.theme.bash</div><div class="line">PS1=&quot;\e[35;40m\t\e[33;40m \u@\h \e[0m☆ \e[34;40m\w\n\e[36;40m➣ \e[0m&quot;</div><div class="line"># PS1=&quot;\e[37;40m\][\[\e[32;40m\]\u\[\e[37;40m\]@\h \[\e[36;40m\]\w\[\e[0m\]\\$ &quot;</div></pre></td></tr></table></figure>
 <ul>
@@ -450,6 +467,27 @@
     <div>
       
         
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechatpay.png" alt="Harvey Huang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Harvey Huang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
     </div>
@@ -554,7 +592,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/images/harvey.jpg"
                alt="Harvey Huang" />
           <p class="site-author-name" itemprop="name">Harvey Huang</p>
            
