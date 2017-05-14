@@ -120,7 +120,7 @@
 <meta property="og:image" content="http://harveyhuang.github.io/2017/03/25/OpenStack-Installation-Instruction/1490458066888.jpg">
 <meta property="og:image" content="http://harveyhuang.github.io/2017/03/25/OpenStack-Installation-Instruction/1490516798724.jpg">
 <meta property="og:image" content="http://harveyhuang.github.io/2017/03/25/OpenStack-Installation-Instruction/1490516826062.jpg">
-<meta property="og:updated_time" content="2017-04-04T06:19:41.017Z">
+<meta property="og:updated_time" content="2017-05-14T05:06:25.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenStack Installation Instruction">
 <meta name="twitter:description" content="Abstract记录自己在装OpenStack时遇到的坑主流程参照陈沙克老师的博客和DevStack官网，主要参考陈沙克老师的==local.conf== 文件，修改了其中主机IP，固定IP等看完了OpenStack Configuration那部分的文档，之后再做修改，预计与创建的实例连接外网有关。尽管官网介绍的步骤非常简单，但是自己配置各种出错，按照博客中的原话，多执行脚本几次错误就过去了(">
@@ -229,6 +229,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
@@ -245,36 +255,6 @@
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
           </a>
         </li>
       
@@ -431,7 +411,6 @@
 <p>Abstract<br>记录自己在装OpenStack时遇到的坑<br>主流程参照<a href="http://www.chenshake.com/devstack-installation-and-testing/" target="_blank" rel="external">陈沙克老师的博客</a>和<a href="https://docs.openstack.org/developer/devstack/" target="_blank" rel="external">DevStack官网</a>，主要参考陈沙克老师的==local.conf== 文件，修改了其中主机IP，固定IP等看完了OpenStack Configuration那部分的文档，之后再做修改，预计与创建的实例连接外网有关。<br>尽管官网介绍的步骤非常简单，但是自己配置各种出错，按照博客中的原话，多执行脚本几次错误就过去了(网络问题)。</p>
 </blockquote>
 <p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
-<p>[toc]</p>
 <h3 id="VMware-网络配置"><a href="#VMware-网络配置" class="headerlink" title="VMware 网络配置"></a>VMware 网络配置</h3><p><a href="http://blog.csdn.net/clevercode/article/details/45934233" target="_blank" rel="external">VMware三种网络模式讲解</a><br><a href="http://www.2cto.com/os/201404/292853.html" target="_blank" rel="external">Ubuntu网络配置讲解</a><br>配置信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">VMware：12.0 pro</div><div class="line">Windows：Win10</div><div class="line">Ubuntu：14.04(推荐)</div><div class="line"></div><div class="line">Windows </div><div class="line">IP：192.168.1.108</div><div class="line">GW：192.168.1.1</div><div class="line"></div><div class="line">VMware</div><div class="line">- NAT Mode：利用主机的IP联网，有自己的网段，可配置</div><div class="line">IP：192.168.12.132</div><div class="line">GW：192.168.12.2</div><div class="line">MASK：255.255.255.0</div><div class="line"></div><div class="line"></div><div class="line">-Bridge Mode：和Windows的IP在同一网段，这和windows 路由器配置有关</div><div class="line">IP：192.168.1.x</div><div class="line">GW：192.168.1.1</div><div class="line">MASK：255.255.255.0</div></pre></td></tr></table></figure></p>
 <p>NAT模式在使用ssh连接时不容易掉线，而桥接模式容易被挤掉，出现==Connection closed by foreign host.== 错误。<br>在Windows下可以使用<code>ipconfig</code>查看ip设置，使用<code>arp -a</code>查看与虚拟机是否建立了连接，使用之前最好刷新一下虚拟机的网络，比如在虚拟机中上下网什么的。<br>在虚拟机Ubuntu中可以编辑 ==/etc/network/interfaces== 文件</p>
 <h3 id="VMware虚拟机配置"><a href="#VMware虚拟机配置" class="headerlink" title="VMware虚拟机配置"></a>VMware虚拟机配置</h3><ul>
