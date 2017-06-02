@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[DPDK-介绍]]></title>
-    <url>%2F2017%2F05%2F19%2FDPDK-%E4%BB%8B%E7%BB%8D%2F</url>
+    <title><![CDATA[核亲和性绑定]]></title>
+    <url>%2F2017%2F05%2F26%2F%E6%A0%B8%E4%BA%B2%E5%92%8C%E6%80%A7%E7%BB%91%E5%AE%9A%2F</url>
     <content type="text"><![CDATA[Abstract]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[DPDK 介绍]]></title>
+    <url>%2F2017%2F05%2F19%2FDPDK-%E4%BB%8B%E7%BB%8D%2F</url>
+    <content type="text"><![CDATA[AbstractDPDK是Intel在IA框架下开发的数据面开发套件，运用了DDIO、NUMA、AVX、HugePage的数据面开发套件。]]></content>
       <categories>
         <category>学习</category>
       </categories>
@@ -76,7 +87,7 @@
   <entry>
     <title><![CDATA[Linux服务器常用配置方法]]></title>
     <url>%2F2016%2F10%2F15%2FLinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[常用的Linux环境配置，使变成更有效率 利用Samba实现服务器和windows下文件共享1234567891011121314151617181920212223242526# 1. 安装sambasudo apt-get install samba# 2. 添加系统用户sudo adduser # 3. 添加系统用户目录（如果使用adduser 这步可以省掉）cd /homemkdir usernamechown -R username# 4. 添加samba用户sudo smbpasswd -a username# 5. 配置sambavi /etc/samba/smb.conf[username] comment = shared dir with username path = /home/username browseable = yes writable = yes read only = no guest ok = no# 6. 重启samba/etc/init.d/samba restart 修改Linux主机名 暂时修改，下次会话生效 1234# 方法一 hostname newhostname# 方法二 sysctl kernel.hostname 永久性修改 123vi /etc/hostname# 如果没有上面的目录的话vi /etc/sysconfig/hostname 用户相关usermod 选项12345678910111213-a|--append ##把用户追加到某些组中，仅与-G选项一起使用 -c|--comment ##修改/etc/passwd文件第五段comment -d|--home ##修改用户的家目录通常和-m选项一起使用 -e|--expiredate ##指定用户帐号禁用的日期，格式YY-MM-DD -f|--inactive ##用户密码过期多少天后采用就禁用该帐号，0表示密码已过期就禁用帐号，-1表示禁用此功能，默认值是-1 -g|--gid ##修改用户的gid，改组一定存在-G|--groups ##把用户追加到某些组中，仅与-a选项一起使用 -l|--login ##修改用户的登录名称 -L|--lock ##锁定用户的密码 -m|--move-home ##修改用户的家目录通常和-d选项一起使用 -s|--shell ##修改用户的shell -u|--uid ##修改用户的uid，该uid必须唯一 -U|--unlock ##解锁用户的密码 新建用户test，密码test，添加用户组usertest 123# adduser test# 根据提示输入密码等信息# groupadd usertest 将test用户添加到usertest用户组 123#usermod -aG usertest test ##多个组之间用空格隔开 #id test uid=500(test) gid=500(test) groups=500(test),501(usertest) 修改test用户Home目录 123#usermod -md /home/usertest #ls /home usertest 修改用户名 123#usermod -l urchin(新用户名称) test(原来用户名称) #id urchin uid=500(urchin) gid=500(test) groups=500(test),501(usertest) 修改用户shell 12345#sed &apos;$!d&apos; /etc/passwd urchin:x:500:500::/home/usertest:/bin/bash #usermod -s /bin/sh urchin #sed -n &apos;$p&apos; /etc/passwd urchin:x:500:500::/home/usertest:/bin/sh (当然bash更好用)]]></content>
+    <content type="text"><![CDATA[常用的Linux环境配置，使编程更有效率 利用Samba实现服务器和windows下文件共享1234567891011121314151617181920212223242526# 1. 安装sambasudo apt-get install samba# 2. 添加系统用户sudo adduser # 3. 添加系统用户目录（如果使用adduser 这步可以省掉）cd /homemkdir usernamechown -R username# 4. 添加samba用户sudo smbpasswd -a username# 5. 配置sambavi /etc/samba/smb.conf[username] comment = shared dir with username path = /home/username browseable = yes writable = yes read only = no guest ok = no# 6. 重启samba/etc/init.d/samba restart 修改Linux主机名 暂时修改，下次会话生效 1234# 方法一 hostname newhostname# 方法二 sysctl kernel.hostname 永久性修改 123vi /etc/hostname# 如果没有上面的目录的话vi /etc/sysconfig/hostname 用户相关usermod 选项12345678910111213-a|--append ##把用户追加到某些组中，仅与-G选项一起使用 -c|--comment ##修改/etc/passwd文件第五段comment -d|--home ##修改用户的家目录通常和-m选项一起使用 -e|--expiredate ##指定用户帐号禁用的日期，格式YY-MM-DD -f|--inactive ##用户密码过期多少天后采用就禁用该帐号，0表示密码已过期就禁用帐号，-1表示禁用此功能，默认值是-1 -g|--gid ##修改用户的gid，改组一定存在-G|--groups ##把用户追加到某些组中，仅与-a选项一起使用 -l|--login ##修改用户的登录名称 -L|--lock ##锁定用户的密码 -m|--move-home ##修改用户的家目录通常和-d选项一起使用 -s|--shell ##修改用户的shell -u|--uid ##修改用户的uid，该uid必须唯一 -U|--unlock ##解锁用户的密码 新建用户test，密码test，添加用户组usertest 123# adduser test# 根据提示输入密码等信息# groupadd usertest 将test用户添加到usertest用户组 123#usermod -aG usertest test ##多个组之间用空格隔开 #id test uid=500(test) gid=500(test) groups=500(test),501(usertest) 修改test用户Home目录 123#usermod -md /home/usertest #ls /home usertest 修改用户名 123#usermod -l urchin(新用户名称) test(原来用户名称) #id urchin uid=500(urchin) gid=500(test) groups=500(test),501(usertest) 修改用户shell 12345#sed &apos;$!d&apos; /etc/passwd urchin:x:500:500::/home/usertest:/bin/bash #usermod -s /bin/sh urchin #sed -n &apos;$p&apos; /etc/passwd urchin:x:500:500::/home/usertest:/bin/sh (当然bash更好用)]]></content>
       <categories>
         <category>环境搭建</category>
       </categories>

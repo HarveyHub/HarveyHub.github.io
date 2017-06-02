@@ -108,16 +108,16 @@
 
 
 
-<meta name="description" content="常用的Linux环境配置，使变成更有效率">
+<meta name="description" content="常用的Linux环境配置，使编程更有效率">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux服务器常用配置方法">
 <meta property="og:url" content="http://harveyhuang.github.io/2016/10/15/Linux服务器常用配置方法/index.html">
 <meta property="og:site_name" content="Harvey Huang's Blog">
-<meta property="og:description" content="常用的Linux环境配置，使变成更有效率">
-<meta property="og:updated_time" content="2017-05-11T13:05:37.619Z">
+<meta property="og:description" content="常用的Linux环境配置，使编程更有效率">
+<meta property="og:updated_time" content="2017-06-01T15:45:20.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux服务器常用配置方法">
-<meta name="twitter:description" content="常用的Linux环境配置，使变成更有效率">
+<meta name="twitter:description" content="常用的Linux环境配置，使编程更有效率">
 
 
 
@@ -401,7 +401,7 @@
 
       
         <blockquote>
-<p>常用的Linux环境配置，使变成更有效率</p>
+<p>常用的Linux环境配置，使编程更有效率</p>
 </blockquote>
 <p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
 <h3 id="利用Samba实现服务器和windows下文件共享"><a href="#利用Samba实现服务器和windows下文件共享" class="headerlink" title="利用Samba实现服务器和windows下文件共享"></a>利用<strong>Samba</strong>实现服务器和windows下文件共享</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1. 安装samba</span></div><div class="line">sudo apt-get install samba</div><div class="line"></div><div class="line"><span class="comment"># 2. 添加系统用户</span></div><div class="line">sudo adduser </div><div class="line"></div><div class="line"><span class="comment"># 3. 添加系统用户目录（如果使用adduser 这步可以省掉）</span></div><div class="line"><span class="built_in">cd</span> /home</div><div class="line">mkdir username</div><div class="line">chown -R username</div><div class="line"></div><div class="line"><span class="comment"># 4. 添加samba用户</span></div><div class="line">sudo smbpasswd <span class="_">-a</span> username</div><div class="line"></div><div class="line"><span class="comment"># 5. 配置samba</span></div><div class="line">vi /etc/samba/smb.conf</div><div class="line">[username]</div><div class="line">   comment = shared dir with username</div><div class="line">   path = /home/username</div><div class="line">   browseable = yes</div><div class="line">   writable = yes</div><div class="line">   <span class="built_in">read</span> only = no</div><div class="line">   guest ok = no</div><div class="line"></div><div class="line"><span class="comment"># 6. 重启samba</span></div><div class="line">/etc/init.d/samba restart</div></pre></td></tr></table></figure>
@@ -583,7 +583,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
