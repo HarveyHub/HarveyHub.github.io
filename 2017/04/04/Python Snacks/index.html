@@ -114,7 +114,7 @@
 <meta property="og:url" content="http://harveyhuang.github.io/2017/04/04/Python Snacks/index.html">
 <meta property="og:site_name" content="Harvey Huang's Blog">
 <meta property="og:description" content="Abstract">
-<meta property="og:updated_time" content="2017-05-26T10:31:45.252Z">
+<meta property="og:updated_time" content="2017-06-03T08:57:01.942Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python Snacks">
 <meta name="twitter:description" content="Abstract">
@@ -405,6 +405,7 @@
 </blockquote>
 <p><excerpt in="" index=""><br><a id="more"></a></excerpt></p>
 <h1 id="刷题专用"><a href="#刷题专用" class="headerlink" title="刷题专用"></a>刷题专用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#coding:utf-8</div><div class="line">import sys</div><div class="line">try:</div><div class="line">	sys.stdin = open(__file__.split(&quot;.&quot;)[0]+&quot;.txt&quot;);	</div><div class="line">except IOError, e:</div><div class="line">	print e;</div><div class="line">	print &quot;Please input manully&quot;;</div><div class="line">	</div><div class="line">while(True):</div><div class="line">	try:</div><div class="line">		n = int(raw_input());</div><div class="line">		nums = map(int, raw_input().split(&quot; &quot;));</div><div class="line">		print(nums);</div><div class="line">		nums.sort();</div><div class="line">		k = int(raw_input());</div><div class="line">		print(nums)</div><div class="line">		print(nums[k + 1]);</div><div class="line">	except EOFError:</div><div class="line">		break;</div></pre></td></tr></table></figure>
+<h1 id="测试脚本专用"><a href="#测试脚本专用" class="headerlink" title="测试脚本专用"></a>测试脚本专用</h1><p>使用subprocess模块调用系统命令或这可执行程序，将返回的结果保存到pipe中，之后使用便利的python字符串操作来记录结果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#! /usr/bin/python</div><div class="line">#coding:utf-8</div><div class="line">import subprocess as sp</div><div class="line">timers = [];</div><div class="line">cnt = 20;</div><div class="line">for i in range(cnt):</div><div class="line">    p = sp.Popen([&quot;./target&quot;, &quot;-a -b b&quot;], shell=True, stdout=sp.PIPE);</div><div class="line">    output = p.stdout.read().split();</div><div class="line">    #print output;</div><div class="line">    tmp = [];</div><div class="line">    for item in output:</div><div class="line">        if(item.find(&quot;us&quot;) &gt; 0):</div><div class="line">            tmp.append(item[:item.index(&quot;us&quot;)]);</div><div class="line">    if(len(tmp)&gt;0):</div><div class="line">        timers.append(map(float, tmp));</div><div class="line"></div><div class="line">for i in timers:</div><div class="line">    print i</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -468,8 +469,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/04/Pycharm使用/" rel="next" title="Pycharm使用">
-                <i class="fa fa-chevron-left"></i> Pycharm使用
+              <a href="/2017/03/25/OpenStack-Installation-Instruction/" rel="next" title="OpenStack Installation Instruction">
+                <i class="fa fa-chevron-left"></i> OpenStack Installation Instruction
               </a>
             
           </div>
@@ -552,7 +553,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -563,7 +564,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -574,7 +575,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -609,7 +610,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#刷题专用"><span class="nav-number">1.</span> <span class="nav-text">刷题专用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#刷题专用"><span class="nav-number">1.</span> <span class="nav-text">刷题专用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试脚本专用"><span class="nav-number">2.</span> <span class="nav-text">测试脚本专用</span></a></li></ol></div>
             
 
           </div>
